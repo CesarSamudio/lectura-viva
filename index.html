@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectura Viva: Comprende el Mundo</title>
+    <meta name="description" content="Una plataforma para que estudiantes de 10°, 11° y 12° descubran la lectura comprensiva: literal, inferencial y crítica. Aprende jugando.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Lectura Viva: Comprende el Mundo">
+    <meta property="og:description" content="Domina la lectura comprensiva con un quiz interactivo de 3 niveles: literal, inferencial y crítico.">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts: Bricolage Grotesque (display) + Inter (body) + Roboto Mono (numeros) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Caveat:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+</head>
+<body class="page-enter">
+
+<!-- ============== HEADER (pill flotante con borde dashed) ============== -->
+<header class="header" id="header">
+    <nav class="header__nav">
+        <a href="/" class="header__logo">
+            <span class="logo-mark">📖</span>
+            <span class="logo-text">Lectura <strong>Viva</strong></span>
+        </a>
+
+        <ul class="header__menu">
+            <li><a href="#niveles">Niveles</a></li>
+            <li><a href="jugar.html">Jugar</a></li>
+            <li><a href="ranking.html">Ranking</a></li>
+            <li><a href="comunidad.html">Comunidad</a></li>
+        </ul>
+
+        <div class="header__cta">
+            <!-- Estado sin sesion -->
+            <button class="btn btn--primary" id="loginBtn" hidden>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M21.35 11.1H12v3.8h5.59c-.56 2.7-2.86 4.1-5.59 4.1A6.5 6.5 0 1 1 12 5.5c1.6 0 3.05.6 4.2 1.55l2.7-2.7A9.9 9.9 0 0 0 12 2.5a9.5 9.5 0 1 0 0 19c5.5 0 9.5-3.9 9.5-9.4 0-.7-.05-1.3-.15-1.95z"/></svg>
+                Iniciar con Google
+            </button>
+            <!-- Estado con sesion -->
+            <div class="user-chip" id="userChip" hidden>
+                <img src="" alt="" class="user-chip__avatar" id="userAvatar">
+                <span class="user-chip__name" id="userName">Cargando...</span>
+                <button class="user-chip__edit" id="editNickBtn" aria-label="Editar nickname" title="Editar nickname">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+                </button>
+                <button class="user-chip__menu" id="userMenu" aria-label="Menú">⋮</button>
+            </div>
+        </div>
+
+        <!-- Botón hamburguesa — solo visible en mobile (ver @media en styles.css) -->
+        <button class="header__burger" id="headerBurger" aria-label="Menú de navegación" aria-expanded="false">
+            <span class="header__burger-line"></span>
+            <span class="header__burger-line"></span>
+            <span class="header__burger-line"></span>
+        </button>
+    </nav>
+</header>
+
+<!-- Panel del menú móvil — oculto en desktop, abre con clase .is-open -->
+<div class="header__overlay" id="headerOverlay"></div>
+<nav class="header__menu--mobile" id="headerMenuMobile" aria-label="Navegación móvil">
+    <a href="#niveles">Niveles</a>
+    <a href="jugar.html">Jugar</a>
+    <a href="ranking.html">Ranking</a>
+    <a href="comunidad.html">Comunidad</a>
+</nav>
+
+<main>
+
+    <!-- ============== HERO ============== -->
+        <!-- Concepto "Cuaderno Vivo": página abierta de cuaderno sobre escritorio.
+             Anotaciones manuscritas con Caveat, margen rojo universitario,
+             sello de corrección rojo, número de página "p. 1", grain SVG de papel.
+             Honestidad material, no es un SaaS genérico. -->
+        <section class="hero" id="hero">
+            <!-- Grain de papel kraft (textura SVG noise via data URI) -->
+            <div class="hero__grain" aria-hidden="true"></div>
+
+            <!-- Reglas horizontales del cuaderno -->
+            <div class="hero__ruled" aria-hidden="true"></div>
+
+            <!-- Margen izquierdo rojo (cuaderno universitario) -->
+            <div class="hero__margin" aria-hidden="true"></div>
+
+            <!-- Anotación manuscrita del lector (esquina superior derecha) -->
+            <div class="hero__note" aria-hidden="true">
+                capítulo 1<br>
+                — no leas esto<br>
+                <em>(mentira, sí leé)</em>
+            </div>
+
+            <!-- Sello de corrección rojo (esquina inferior derecha) -->
+            <div class="hero__stamp" aria-hidden="true">Versión 1.0</div>
+
+            <!-- Número de página (esquina inferior izquierda) -->
+            <div class="hero__pagenum" aria-hidden="true">— p. 1 —</div>
+
+            <!-- Subrayado manuscrito (debajo de "Viva.") -->
+            <svg class="hero__underline" aria-hidden="true" viewBox="0 0 200 12" preserveAspectRatio="none">
+                <path d="M 0 8 Q 50 2 100 7 T 200 5" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            </svg>
+
+            <div class="container">
+                <div class="hero__inner">
+                    <div class="hero__copy">
+                        <p class="hero__eyebrow reveal">CUADERNO DE COMPRENSIÓN LECTORA</p>
+                        <h1 class="hero__title reveal">
+                            Lectura<em class="hero__title-viva">Viva.</em>
+                        </h1>
+                        <p class="hero__lede reveal">
+                            Comprende el mundo con cada párrafo que lees.<br>
+                            Domina los <strong>3 niveles de lectura</strong> con un quiz interactivo.
+                        </p>
+                        <div class="hero__cta reveal">
+                            <a href="jugar.html" class="hero__btn hero__btn--primary">
+                                Empezar a leer
+                            </a>
+                            <a href="#niveles" class="hero__btn hero__btn--secondary">
+                                ver el índice →
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Sticky notes decorativas (mantenidas, encajan en el tema cuaderno) -->
+                    <div class="hero__sticky" aria-hidden="true">
+                        <div class="sticky-note sticky-note--1 reveal">
+                            <span class="sticky-note__pin"></span>
+                            <p>"No es solo leer, es pensar."</p>
+                        </div>
+                        <div class="sticky-note sticky-note--2 reveal">
+                            <span class="sticky-note__pin"></span>
+                            <p>Literal · Inferencial · Crítica</p>
+                        </div>
+                        <div class="sticky-note sticky-note--3 reveal">
+                            <span class="sticky-note__pin"></span>
+                            <p>¡Subí al ranking!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- ============== ¿POR QUÉ IMPORTA? ============== -->
+    <section class="why" id="por-que">
+        <div class="container">
+            <h2 class="section-title reveal">¿Por qué importa leer bien?</h2>
+            <p class="section-lede reveal">
+                La lectura comprensiva no es solo 'entender palabras'. Es construir
+                significado: distinguir lo que el texto dice de lo que tú interpretas, y
+                formarte un juicio propio.
+            </p>
+
+            <div class="why__grid">
+                <article class="why-card reveal">
+                    <div class="why-card__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                    </div>
+                    <span class="why-card__watermark" aria-hidden="true">01</span>
+                    <h3>Pensamiento crítico</h3>
+                    <p>Pasas de consumidor de información a analista. Preguntas, no aceptas.</p>
+                </article>
+
+                <article class="why-card reveal">
+                    <div class="why-card__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    </div>
+                    <span class="why-card__watermark" aria-hidden="true">02</span>
+                    <h3>Mejores notas</h3>
+                    <p>En la universidad, el 80% del éxito depende de comprender textos largos. Empieza ya.</p>
+                </article>
+
+                <article class="why-card reveal">
+                    <div class="why-card__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
+                    <span class="why-card__watermark" aria-hidden="true">03</span>
+                    <h3>Mejores argumentos</h3>
+                    <p>Sabes defender ideas con evidencia del texto. Hablas y escribes con propiedad.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============== LOS 3 NIVELES ============== -->
+    <section class="levels" id="niveles">
+        <div class="container">
+            <h2 class="section-title reveal">Los 3 niveles de lectura</h2>
+            <p class="section-lede reveal">
+                Cada nivel exige una forma distinta de pensar. Empieza por el primero, sube al
+                segundo, domina el tercero.
+            </p>
+
+            <div class="levels__grid">
+                <article class="level level--literal reveal" data-num="1">
+                    <svg class="level__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    <span class="level__badge">NIVEL 1</span>
+                    <h3 class="level__title">Literal</h3>
+                    <p class="level__points"><strong>10 puntos</strong> por acierto</p>
+                    <p class="level__desc">
+                        Lo que el texto <strong>DICE</strong>. Hechos, datos, fechas, personajes.
+                        El nivel más fácil.
+                    </p>
+                    <p class="level__example">
+                        Ej.: ¿En qué año ocurrió la Revolución Francesa?
+                    </p>
+                </article>
+
+                <article class="level level--inferential reveal" data-num="2">
+                    <svg class="level__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M9 18h6M10 22h4M12 2a7 7 0 0 1 4 12.7c-.6.5-1 1.2-1 2v.3H9v-.3c0-.8-.4-1.5-1-2A7 7 0 0 1 12 2z"/>
+                    </svg>
+                    <span class="level__badge">NIVEL 2</span>
+                    <h3 class="level__title">Inferencial</h3>
+                    <p class="level__points"><strong>15 puntos</strong> por acierto</p>
+                    <p class="level__desc">
+                        Lo que el texto <strong>QUIERE DECIR</strong>. Inferencias, causas,
+                        consecuencias, relaciones.
+                    </p>
+                    <p class="level__example">
+                        Ej.: ¿Por qué el autor menciona el contexto económico?
+                    </p>
+                </article>
+
+                <article class="level level--critical reveal" data-num="3">
+                    <svg class="level__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                    </svg>
+                    <span class="level__badge">NIVEL 3</span>
+                    <h3 class="level__title">Crítica</h3>
+                    <p class="level__points"><strong>20 puntos</strong> por acierto</p>
+                    <p class="level__desc">
+                        Lo que <strong>TÚ OPINAS</strong> del texto. Validez, sesgos, acuerdos,
+                        desacuerdos.
+                    </p>
+                    <p class="level__example">
+                        Ej.: ¿Crees que el argumento del autor es sólido? ¿Por qué?
+                    </p>
+                </article>
+            </div>
+
+            <div class="levels__cta reveal">
+                <a href="jugar.html" class="btn btn--primary btn--lg">
+                    <span>Empezar ahora</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============== SECCIÓN INTERMEDIA: LLAMADAS A LA ACCIÓN ============== -->
+    <section class="cta-grid">
+        <div class="container">
+            <div class="cta-grid__inner">
+                <a href="jugar.html" class="cta-tile cta-tile--jugar reveal">
+                    <span class="cta-tile__emoji">🎮</span>
+                    <h3>Jugar</h3>
+                    <p>10 preguntas aleatorias. 3 niveles. Sin límite de tiempo.</p>
+                    <span class="cta-tile__arrow">→</span>
+                </a>
+
+                <a href="ranking.html" class="cta-tile cta-tile--ranking reveal">
+                    <span class="cta-tile__emoji">🏆</span>
+                    <h3>Ranking</h3>
+                    <p>Top 10 lectores de la comunidad. ¿Subes o bajas?</p>
+                    <span class="cta-tile__arrow">→</span>
+                </a>
+
+                <a href="comunidad.html" class="cta-tile cta-tile--comunidad reveal">
+                    <span class="cta-tile__emoji">💬</span>
+                    <h3>Comunidad</h3>
+                    <p>Dejá tu opinión y descubrí qué piensan otros estudiantes.</p>
+                    <span class="cta-tile__arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ============== MODAL: EDITAR NICKNAME ============== -->
+<div class="modal" id="editNickModal" hidden role="dialog" aria-modal="true" aria-labelledby="editNickTitle">
+    <div class="modal__backdrop" id="editNickBackdrop"></div>
+    <div class="modal__card">
+        <h3 id="editNickTitle" class="modal__title">Editar nickname</h3>
+        <p class="modal__subtitle">Tu nickname se mostrará en el ranking y en tus comentarios.</p>
+
+        <label for="editNickInput" class="comments__label">Nickname (3-30 caracteres)</label>
+        <input type="text" id="editNickInput" class="comments__input" maxlength="30" minlength="3" required>
+        <div class="comments__counter"><span id="editNickCounter">0</span> / 30</div>
+
+        <p class="modal__hint">Solo letras, números, espacios, guiones y puntos. Caracteres especiales serán removidos.</p>
+
+        <div class="modal__feedback" id="editNickFeedback" hidden></div>
+
+        <div class="modal__actions">
+            <button type="button" class="btn btn--ghost" id="editNickCancel">Cancelar</button>
+            <button type="button" class="btn btn--primary" id="editNickSave">Guardar</button>
+        </div>
+    </div>
+</div>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer__grid">
+            <div class="footer__col">
+                <span class="logo-mark">📖</span>
+                <p class="footer__brand"><strong>Lectura Viva</strong></p>
+                <p class="footer__tagline">Fomentando la lectura comprensiva en estudiantes de 10°, 11° y 12°.</p>
+            </div>
+
+            <div class="footer__col">
+                <h4>Proyecto</h4>
+                <ul>
+                    <li><a href="#por-que">¿Por qué importa?</a></li>
+                    <li><a href="#niveles">Los 3 niveles</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h4>Comunidad</h4>
+                <ul>
+                    <li><a href="ranking.html">Ranking</a></li>
+                    <li><a href="comunidad.html">Comentarios</a></li>
+                    <li><a href="https://chat.whatsapp.com/GvQheMLbFPm3ea5XaJh2DQ" target="_blank" rel="noopener" id="whatsappLinkFooter">Grupo de WhatsApp</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="terminos.html">Términos y Condiciones</a></li>
+                    <li><a href="privacidad.html">Política de Privacidad</a></li>
+                </ul>
+                <p class="footer__small" style="margin-top: 16px;">
+                    © 2026 Lectura Viva. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer__bottom">
+            <p>Hecho con ❤️ para estudiantes.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ============== SCRIPTS ============== -->
+<script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore-compat.js"></script>
+
+<script src="firebase-config.js"></script>
+<script src="auth.js"></script>
+<script src="firestore.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

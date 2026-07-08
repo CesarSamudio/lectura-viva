@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectura Viva — Jugar</title>
+    <meta name="description" content="Poné a prueba tu lectura comprensiva con 10 preguntas aleatorias de los 3 niveles.">
+    <meta name="robots" content="noindex">
+
+    <!-- Google Fonts: Bricolage Grotesque (display) + Inter (body) + Roboto Mono (numeros) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+</head>
+<body class="page-enter">
+
+<!-- ============== HEADER ============== -->
+<header class="header" id="header">
+    <nav class="header__nav">
+        <a href="/" class="header__logo">
+            <span class="logo-mark">📖</span>
+            <span class="logo-text">Lectura <strong>Viva</strong></span>
+        </a>
+
+        <ul class="header__menu">
+            <li><a href="/#niveles">Niveles</a></li>
+            <li><a href="jugar.html" class="is-active">Jugar</a></li>
+            <li><a href="ranking.html">Ranking</a></li>
+            <li><a href="comunidad.html">Comunidad</a></li>
+        </ul>
+
+        <div class="header__cta">
+            <button class="btn btn--primary" id="loginBtn" hidden>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M21.35 11.1H12v3.8h5.59c-.56 2.7-2.86 4.1-5.59 4.1A6.5 6.5 0 1 1 12 5.5c1.6 0 3.05.6 4.2 1.55l2.7-2.7A9.9 9.9 0 0 0 12 2.5a9.5 9.5 0 1 0 0 19c5.5 0 9.5-3.9 9.5-9.4 0-.7-.05-1.3-.15-1.95z"/></svg>
+                Iniciar con Google
+            </button>
+            <div class="user-chip" id="userChip" hidden>
+                <img src="" alt="" class="user-chip__avatar" id="userAvatar">
+                <span class="user-chip__name" id="userName">Cargando...</span>
+                <button class="user-chip__edit" id="editNickBtn" aria-label="Editar nickname" title="Editar nickname">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+                </button>
+                <button class="user-chip__menu" id="userMenu" aria-label="Menú">⋮</button>
+            </div>
+        </div>
+
+        <!-- Botón hamburguesa — solo visible en mobile (ver @media en styles.css) -->
+        <button class="header__burger" id="headerBurger" aria-label="Menú de navegación" aria-expanded="false">
+            <span class="header__burger-line"></span>
+            <span class="header__burger-line"></span>
+            <span class="header__burger-line"></span>
+        </button>
+    </nav>
+</header>
+
+<!-- Panel del menú móvil — oculto en desktop, abre con clase .is-open -->
+<div class="header__overlay" id="headerOverlay"></div>
+<nav class="header__menu--mobile" id="headerMenuMobile" aria-label="Navegación móvil">
+    <a href="#niveles">Niveles</a>
+    <a href="jugar.html">Jugar</a>
+    <a href="ranking.html">Ranking</a>
+    <a href="comunidad.html">Comunidad</a>
+</nav>
+
+<main>
+
+    <!-- ============== MINIJUEGO ============== -->
+    <section class="game" id="jugar">
+        <div class="container">
+            <h1 class="section-title reveal">Pon a prueba tu lectura</h1>
+            <p class="section-lede reveal">
+                10 preguntas aleatorias. Mezcla de los 3 niveles. Suma puntos, sube en el ranking.
+            </p>
+
+            <!-- Pantalla de inicio -->
+            <div class="game__start reveal" id="gameStart">
+                <div class="game__start-card">
+                    <h2>¿Listo para jugar?</h2>
+                    <p>10 preguntas • 3 niveles • Sin límite de tiempo</p>
+                    <button type="button" class="btn btn--primary btn--lg" id="startGameBtn">
+                        Empezar
+                    </button>
+                    <p class="game__note" id="gameStartNote">Inicia sesión con Google para guardar tu puntaje y aparecer en el ranking. <a href="#" id="loginFromStart" class="game__note-link">Entrar</a></p>
+                </div>
+            </div>
+
+            <!-- Pantalla de pregunta (oculta inicialmente) -->
+            <div class="game__play" id="gamePlay" hidden>
+                <div class="game__progress">
+                    <div class="game__progress-bar">
+                        <div class="game__progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="game__progress-text" id="progressText">1 / 10</span>
+                </div>
+
+                <div class="game__nivel" id="gameNivel" aria-live="polite">NIVEL 1</div>
+
+                <article class="game__question-card">
+                    <p class="game__text" id="gameText">Cargando pregunta...</p>
+                    <h2 class="game__question" id="gameQuestion">Pregunta</h2>
+                    <div class="game__options" id="gameOptions">
+                        <!-- Opciones generadas por JS -->
+                    </div>
+                </article>
+
+                <div class="game__feedback" id="gameFeedback" role="status" aria-live="polite" hidden></div>
+            </div>
+
+            <!-- Pantalla final (oculta inicialmente) -->
+            <div class="game__result" id="gameResult" hidden>
+                <div class="game__result-card">
+                    <h2>¡Juego terminado!</h2>
+                    <div class="game__score">
+                        <span class="game__score-label">Tu puntaje</span>
+                        <span class="game__score-value" id="finalScore">0</span>
+                        <span class="game__score-max">/ 145</span>
+                    </div>
+                    <p id="resultMessage">¡Buen trabajo!</p>
+                    <div class="game__result-actions">
+                        <button class="btn btn--primary" id="playAgainBtn">Jugar de nuevo</button>
+                        <a href="ranking.html" class="btn btn--ghost">Ver ranking</a>
+                        <a href="/" class="btn btn--ghost">Volver al inicio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ============== MODAL: EDITAR NICKNAME ============== -->
+<div class="modal" id="editNickModal" hidden role="dialog" aria-modal="true" aria-labelledby="editNickTitle">
+    <div class="modal__backdrop" id="editNickBackdrop"></div>
+    <div class="modal__card">
+        <h3 id="editNickTitle" class="modal__title">Editar nickname</h3>
+        <p class="modal__subtitle">Tu nickname se mostrará en el ranking y en tus comentarios.</p>
+
+        <label for="editNickInput" class="comments__label">Nickname (3-30 caracteres)</label>
+        <input type="text" id="editNickInput" class="comments__input" maxlength="30" minlength="3" required>
+        <div class="comments__counter"><span id="editNickCounter">0</span> / 30</div>
+
+        <p class="modal__hint">Solo letras, números, espacios, guiones y puntos. Caracteres especiales serán removidos.</p>
+
+        <div class="modal__feedback" id="editNickFeedback" hidden></div>
+
+        <div class="modal__actions">
+            <button type="button" class="btn btn--ghost" id="editNickCancel">Cancelar</button>
+            <button type="button" class="btn btn--primary" id="editNickSave">Guardar</button>
+        </div>
+    </div>
+</div>
+
+<!-- ============== CONFETTI OVERLAY ============== -->
+<canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer__grid">
+            <div class="footer__col">
+                <span class="logo-mark">📖</span>
+                <p class="footer__brand"><strong>Lectura Viva</strong></p>
+                <p class="footer__tagline">Fomentando la lectura comprensiva en estudiantes de 10°, 11° y 12°.</p>
+            </div>
+
+            <div class="footer__col">
+                <h4>Proyecto</h4>
+                <ul>
+                    <li><a href="/#por-que">¿Por qué importa?</a></li>
+                    <li><a href="/#niveles">Los 3 niveles</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h4>Comunidad</h4>
+                <ul>
+                    <li><a href="ranking.html">Ranking</a></li>
+                    <li><a href="comunidad.html">Comentarios</a></li>
+                    <li><a href="https://chat.whatsapp.com/GvQheMLbFPm3ea5XaJh2DQ" target="_blank" rel="noopener" id="whatsappLinkFooter">Grupo de WhatsApp</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="terminos.html">Términos y Condiciones</a></li>
+                    <li><a href="privacidad.html">Política de Privacidad</a></li>
+                </ul>
+                <p class="footer__small" style="margin-top: 16px;">
+                    © 2026 Lectura Viva. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer__bottom">
+            <p>Hecho con ❤️ para estudiantes.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ============== SCRIPTS ============== -->
+<script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore-compat.js"></script>
+
+<script src="firebase-config.js"></script>
+<script src="auth.js"></script>
+<script src="firestore.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

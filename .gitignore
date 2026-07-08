@@ -1,0 +1,29 @@
+# Sistema
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Dependencias (no se commitean dependencias, solo el package.json)
+node_modules/
+
+# Servidor local (solo para tu PC)
+serve.py
+
+# Documentación interna (privada)
+PROJECT_STATUS.md
+
+# PDFs y archivos de respuesta al cliente (privados)
+pdfs-para-equipo/
+respuesta pdfs/
+
+# Reglas de Firestore (contienen UID admin hardcoded — NO exponer)
+reglas-firestore-actuales.txt
+reglas-firestore-dia5.txt
+
+# Mockups de prueba que usamos para diseñar — no son parte del producto
+hero-mockup-a.html
+hero-mockup-b.html
+hero-mockup-c.html
+
+# Archivos de debugging puntuales
+test_spread.js

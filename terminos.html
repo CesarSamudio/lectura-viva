@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectura Viva — Términos y Condiciones</title>
+    <meta name="description" content="Términos y condiciones de uso de Lectura Viva. Reglas de la plataforma, juego, comunidad y moderación.">
+    <meta name="robots" content="noindex">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📜</text></svg>">
+    <style>
+        /* Estilos específicos del documento legal (legible, tipografía editorial) */
+        .legal {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 48px 24px 96px;
+        }
+        .legal h1 {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 5vw, 44px);
+            font-weight: 800;
+            color: var(--ink);
+            margin: 32px 0 8px;
+            line-height: 1.15;
+        }
+        .legal__updated {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--mute);
+            background: var(--paper-deep);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 32px;
+        }
+        .legal h2 {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--ink);
+            margin: 48px 0 12px;
+            padding-top: 16px;
+            border-top: 2px dashed var(--rule);
+        }
+        .legal h2:first-of-type {
+            border-top: none;
+            padding-top: 0;
+            margin-top: 24px;
+        }
+        .legal h3 {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--ink);
+            margin: 24px 0 8px;
+        }
+        .legal p, .legal li {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.75;
+            color: var(--ink-soft);
+            margin: 0 0 12px;
+        }
+        .legal ul, .legal ol {
+            padding-left: 24px;
+            margin: 0 0 16px;
+        }
+        .legal li {
+            margin-bottom: 8px;
+        }
+        .legal strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+        .legal a {
+            color: var(--orange);
+            text-decoration: underline;
+        }
+        .legal a:hover {
+            color: var(--orange-deep);
+        }
+        .legal__callout {
+            background: var(--postit);
+            border: 2px dashed var(--ink);
+            border-radius: var(--r-md);
+            padding: 16px 20px;
+            margin: 24px 0;
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .legal__callout strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+        .legal__toc {
+            background: var(--paper-deep);
+            border: 2px dashed var(--rule);
+            border-radius: var(--r-md);
+            padding: 20px 24px;
+            margin: 0 0 32px;
+        }
+        .legal__toc h2 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--mute);
+            margin: 0 0 12px;
+            padding: 0;
+            border: none;
+            font-family: var(--font-mono);
+            font-weight: 700;
+        }
+        .legal__toc ol {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            counter-reset: toc-counter;
+        }
+        .legal__toc li {
+            counter-increment: toc-counter;
+            margin: 4px 0;
+            padding: 0;
+            font-size: 14px;
+        }
+        .legal__toc li::before {
+            content: counter(toc-counter) ". ";
+            color: var(--mute);
+            font-family: var(--font-mono);
+            margin-right: 8px;
+        }
+        .legal__toc a {
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .legal__toc a:hover {
+            color: var(--orange);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="page-enter">
+
+<!-- ============== HEADER ============== -->
+<header class="header" id="header">
+    <nav class="header__nav">
+        <a href="/" class="header__logo">
+            <span class="logo-mark">📖</span>
+            <span class="logo-text">Lectura <strong>Viva</strong></span>
+        </a>
+
+        <ul class="header__menu">
+            <li><a href="/#niveles">Niveles</a></li>
+            <li><a href="/jugar">Jugar</a></li>
+            <li><a href="/ranking">Ranking</a></li>
+            <li><a href="/comunidad">Comunidad</a></li>
+        </ul>
+
+        <div class="header__cta">
+            <button class="btn btn--primary" id="loginBtn" hidden>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.35 11.1H12v3.8h5.59c-.56 2.7-2.86 4.1-5.59 4.1A6.5 6.5 0 1 1 12 5.5c1.6 0 3.05.6 4.2 1.55l2.7-2.7A9.9 9.9 0 0 0 12 2.5a9.5 9.5 0 1 0 0 19c5.5 0 9.5-3.9 9.5-9.4 0-.7-.05-1.3-.15-1.95z"/></svg>
+                Iniciar con Google
+            </button>
+            <div class="user-chip" id="userChip" hidden>
+                <img src="" alt="" class="user-chip__avatar" id="userAvatar">
+                <span class="user-chip__name" id="userName">Cargando...</span>
+                <button class="user-chip__edit" id="editNickBtn" aria-label="Editar nickname" title="Editar nickname">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+                </button>
+                <button class="user-chip__menu" id="userMenu" aria-label="Menú">⋮</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <article class="legal">
+        <h1>Términos y Condiciones</h1>
+        <span class="legal__updated">Última actualización: 07 de julio de 2026</span>
+
+        <nav class="legal__toc">
+            <h2>Contenido</h2>
+            <ol>
+                <li><a href="#aceptacion">Aceptación de los términos</a></li>
+                <li><a href="#descripcion">Descripción del servicio</a></li>
+                <li><a href="#cuenta">Cuenta de usuario</a></li>
+                <li><a href="#conducta">Conducta aceptable</a></li>
+                <li><a href="#propiedad">Propiedad intelectual</a></li>
+                <li><a href="#contenido">Contenido generado por el usuario</a></li>
+                <li><a href="#moderacion">Moderación de comentarios</a></li>
+                <li><a href="#ranking">Ranking y puntajes</a></li>
+                <li><a href="#limitaciones">Limitaciones de responsabilidad</a></li>
+                <li><a href="#menores">Uso por menores de edad</a></li>
+                <li><a href="#cambios">Cambios al servicio o a estos términos</a></li>
+                <li><a href="#terminacion">Terminación</a></li>
+                <li><a href="#ley">Ley aplicable y jurisdicción</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ol>
+        </nav>
+
+        <h2 id="aceptacion">1. Aceptación de los términos</h2>
+        <p>Al acceder o usar <strong>Lectura Viva</strong> (en adelante, "la Plataforma", "el Servicio" o "nosotros"), aceptás estos Términos y Condiciones en su totalidad. Si no estás de acuerdo con alguno de estos términos, <strong>no uses el Servicio</strong>.</p>
+        <p>Estos términos constituyen un acuerdo legal entre vos y el operador de Lectura Viva. El uso del Servicio implica que:</p>
+        <ul>
+            <li>Leíste y entendiste estos términos.</li>
+            <li>Aceptás cumplirlos en su totalidad.</li>
+            <li>Tenés al menos 13 años de edad (o la edad mínima legal en tu país para usar este tipo de servicio), o contás con autorización de un adulto responsable.</li>
+        </ul>
+
+        <h2 id="descripcion">2. Descripción del servicio</h2>
+        <p>Lectura Viva es una plataforma educativa gratuita orientada a estudiantes de 10°, 11° y 12° (principalmente de Colombia y Latinoamérica) que ofrece:</p>
+        <ul>
+            <li>Un <strong>quiz interactivo</strong> de comprensión lectora con 3 niveles de dificultad (literal, inferencial y crítico).</li>
+            <li>Un <strong>ranking público</strong> de los mejores puntajes.</li>
+            <li>Una <strong>sección de comunidad</strong> donde los usuarios pueden dejar comentarios sobre su experiencia.</li>
+            <li>Un <strong>grupo de WhatsApp</strong> opcional para interactuar con otros estudiantes.</li>
+        </ul>
+        <p>El Servicio se提供 "tal cual" y "según disponibilidad". Podemos modificar, suspender o discontinuar cualquier parte del Servicio en cualquier momento, con o sin aviso previo.</p>
+
+        <h2 id="cuenta">3. Cuenta de usuario</h2>
+        <p>Para acceder a las funciones completas necesitás una cuenta. El inicio de sesión se realiza exclusivamente a través de <strong>Google Sign-In</strong> (Google OAuth). No creamos contraseñas propias ni almacenamos credenciales.</p>
+        <h3>Lo que obtenemos de Google</h3>
+        <p>Al iniciar sesión, Google nos comparte tu:</p>
+        <ul>
+            <li>Dirección de correo electrónico (almacenada, <strong>no visible públicamente</strong>).</li>
+            <li>Nombre para mostrar (displayName).</li>
+            <li>Foto de perfil (photoURL, si la tenés).</li>
+            <li>Identificador único de Google (uid).</li>
+        </ul>
+        <h3>Tu responsabilidad</h3>
+        <p>Sos responsable de mantener la seguridad de tu cuenta de Google. Lectura Viva <strong>no puede recuperar cuentas</strong> porque no tenemos acceso a tus credenciales. Si perdés acceso a tu cuenta de Google, contactá a Google directamente.</p>
+
+        <h2 id="conducta">4. Conducta aceptable</h2>
+        <p>Al usar Lectura Viva te comprometés a <strong>no</strong>:</p>
+        <ul>
+            <li>Publicar contenido <strong>ofensivo, amenazante, acosador, discriminatorio</strong> o que incite violencia.</li>
+            <li>Compartir <strong>datos personales</strong> propios o de terceros (direcciones, teléfonos, documentos).</li>
+            <li>Hacer <strong>spam</strong>, phishing o distribuir malware.</li>
+            <li>Suplantar la identidad de otra persona o entidad.</li>
+            <li>Intentar <strong>acceder sin autorización</strong> a áreas restringidas del Servicio, otras cuentas, o sistemas del operador.</li>
+            <li>Realizar <strong>ingeniería inversa</strong> del Servicio o intentar extraer su código fuente.</li>
+            <li>Usar <strong>bots, scripts o herramientas automatizadas</strong> para jugar partidas o manipular el ranking.</li>
+            <li>Publicar contenido que infrinja <strong>derechos de terceros</strong> (copyright, marca, privacidad).</li>
+            <li>Menores de 13 años usando el Servicio sin supervisión de un adulto.</li>
+        </ul>
+        <div class="legal__callout">
+            <strong>⚠️ Aclaración importante</strong>
+            Lectura Viva es un espacio pensado para estudiantes de 10° a 12°. Esperamos un trato respetuoso entre todos. Las infracciones a estas reglas pueden resultar en la suspensión o eliminación de tu cuenta, sin previo aviso.
+        </div>
+
+        <h2 id="propiedad">5. Propiedad intelectual</h2>
+        <h3>Nuestro contenido</h3>
+        <p>El diseño, código fuente, textos, ilustraciones, banco de preguntas hardcodeado, marca "Lectura Viva" y logos son propiedad del operador del Servicio y están protegidos por las leyes de propiedad intelectual. No podés reproducirlos, distribuirlos o crear obras derivadas sin autorización escrita previa.</p>
+        <h3>Licencia de uso del Servicio</h3>
+        <p>Te otorgamos una licencia <strong>personal, no exclusiva, no transferible y revocable</strong> para usar Lectura Viva con fines educativos y no comerciales.</p>
+
+        <h2 id="contenido">6. Contenido generado por el usuario</h2>
+        <p>Cuando dejás un comentario en la sección Comunidad o elegís un nickname, estás generando contenido. Respecto a ese contenido:</p>
+        <ul>
+            <li><strong>Nos otorgás una licencia mundial, no exclusiva y gratuita</strong> para usar, mostrar y moderar ese contenido dentro del Servicio.</li>
+            <li><strong>Mantenés la propiedad</strong> de tu contenido. La licencia que nos das es solo para operar el Servicio.</li>
+            <li><strong>Garantizás</strong> que tenés derecho a publicar ese contenido y que no infringe derechos de terceros.</li>
+            <li>Podés <strong>solicitar la eliminación</strong> de tus comentarios en cualquier momento (ver sección <a href="#contacto">Contacto</a>).</li>
+        </ul>
+
+        <h2 id="moderacion">7. Moderación de comentarios</h2>
+        <p>Todos los comentarios pasan por un proceso de <strong>moderación manual</strong> antes de aparecer públicamente en la sección destacada.</p>
+        <ul>
+            <li>Tu comentario se guarda inicialmente como <strong>"pendiente"</strong>.</li>
+            <li>Un moderador humano lo revisa.</li>
+            <li>Si se aprueba, se copia a la sección pública de destacados y se borra de pendientes.</li>
+            <li>Si se rechaza (por infringir estas reglas), se borra sin publicarse.</li>
+        </ul>
+        <p>Nos reservamos el derecho de <strong>rechazar, editar o eliminar</strong> cualquier comentario a nuestra discreción, sin previo aviso, especialmente si infringe la sección <a href="#conducta">Conducta aceptable</a>.</p>
+
+        <h2 id="ranking">8. Ranking y puntajes</h2>
+        <p>El ranking refleja los <strong>mejores puntajes históricos</strong> de los usuarios, asociado a su nickname público.</p>
+        <ul>
+            <li>Cada usuario tiene un <strong>límite diario de 2 partidas</strong> (medido en UTC) para prevenir spam y mantener la integridad del ranking.</li>
+            <li>El puntaje máximo posible por partida es de <strong>145 puntos</strong>.</li>
+            <li>Los puntajes son <strong>personales e intransferibles</strong>.</li>
+            <li>No se otorgan premios materiales por aparecer en el ranking. Es puramente recreativo y educativo.</li>
+            <li>Si detectamos manipulación del ranking (bots, exploits, cuentas múltiples), nos reservamos el derecho de <strong>resetear el puntaje</strong> y suspender la cuenta.</li>
+        </ul>
+
+        <h2 id="limitaciones">9. Limitaciones de responsabilidad</h2>
+        <p>En la máxima extensión permitida por la ley aplicable:</p>
+        <ul>
+            <li>El Servicio se proporciona <strong>"tal cual"</strong>, sin garantías de ningún tipo (ni explícitas ni implícitas).</li>
+            <li><strong>No garantizamos</strong> que el Servicio sea ininterrumpido, libre de errores o seguro.</li>
+            <li><strong>No somos responsables</strong> por daños indirectos, incidentales, especiales o consecuentes derivados del uso del Servicio.</li>
+            <li>El contenido generado por la IA (preguntas dinámicas) puede contener imprecisiones. <strong>No somos responsables</strong> por respuestas que el modelo haya generado de forma incorrecta.</li>
+            <li>El grupo de WhatsApp es administrado por la comunidad. <strong>No moderamos</strong> el contenido compartido en ese grupo.</li>
+        </ul>
+
+        <h2 id="menores">10. Uso por menores de edad</h2>
+        <p>Lectura Viva está pensado para estudiantes de 10° a 12° (típicamente 15-17 años).</p>
+        <ul>
+            <li>Si sos <strong>menor de 13 años</strong>, no uses el Servicio sin supervisión de un adulto responsable.</li>
+            <li>Si sos <strong>mayor de 13 años pero menor de 18</strong>, asegurate de tener permiso de tu madre, padre o tutor antes de usar el Servicio.</li>
+            <li>En ningún caso <strong>recolectamos intencionalmente datos de menores de 13 años</strong> sin consentimiento parental verificable, en cumplimiento de legislaciones como COPPA (Children's Online Privacy Protection Act, EE.UU.) y equivalentes.</li>
+            <li>Si un padre o tutor considera que su hijo menor de 13 años usó el Servicio, puede contactarnos para solicitar la eliminación de la cuenta (ver <a href="#contacto">Contacto</a>).</li>
+        </ul>
+
+        <h2 id="cambios">11. Cambios al servicio o a estos términos</h2>
+        <p>Podemos modificar estos Términos y Condiciones en cualquier momento. Cuando lo hagamos:</p>
+        <ul>
+            <li>Actualizaremos la fecha de "Última actualización" arriba de este documento.</li>
+            <li>Si los cambios son <strong>significativos</strong>, intentaremos notificar a los usuarios registrados por el medio que consideremos apropiado.</li>
+            <li>El uso continuado del Servicio después de los cambios implica aceptación de los nuevos términos.</li>
+        </ul>
+        <p>También podemos <strong>modificar, suspender o discontinuar</strong> cualquier parte del Servicio en cualquier momento, con o sin aviso. No somos responsables por daños derivados de esas decisiones.</p>
+
+        <h2 id="terminacion">12. Terminación</h2>
+        <p>Podés dejar de usar Lectura Viva en cualquier momento. Si querés eliminar tu cuenta y todos los datos asociados, contactanos (ver <a href="#contacto">Contacto</a>).</p>
+        <p>También podemos <strong>suspender o terminar tu cuenta</strong> sin previo aviso si:</p>
+        <ul>
+            <li>Infringís estos Términos y Condiciones.</li>
+            <li>Usás el Servicio de manera que pueda dañarnos a nosotros, a otros usuarios o a terceros.</li>
+            <li>Lo requiere una autoridad legal.</li>
+        </ul>
+        <p>Tras la terminación, todas las licencias otorgadas por estos términos terminan.</p>
+
+        <h2 id="ley">13. Ley aplicable y jurisdicción</h2>
+        <p>Estos Términos se rigen por las leyes de la <strong>República de Colombia</strong>, sin perjuicio de los principios de conflicto de leyes.</p>
+        <p>Cualquier disputa derivada de estos Términos o del uso del Servicio se resolverá en los tribunales competentes de <strong>Bogotá D.C., Colombia</strong>, salvo disposición legal en contrario.</p>
+        <p>Si alguna disposición de estos Términos es declarada inválida por un tribunal, las demás disposiciones seguirán vigentes.</p>
+
+        <h2 id="contacto">14. Contacto</h2>
+        <p>Si tenés preguntas sobre estos Términos, querés reportar un incumplimiento, o solicitar la eliminación de tu cuenta o datos, contactanos por:</p>
+        <ul>
+            <li><strong>Email:</strong> <a href="mailto:legal@lecturaviva.app">legal@lecturaviva.app</a></li>
+            <li><strong>Grupo de WhatsApp oficial</strong> (en la web)</li>
+        </ul>
+        <p>Nos comprometemos a responder en un plazo razonable (típicamente 7 días hábiles).</p>
+
+        <div class="legal__callout">
+            <strong>📌 Recordá</strong>
+            Al usar Lectura Viva aceptás estos Términos y Condiciones y la <a href="privacidad.html">Política de Privacidad</a>. Si no estás de acuerdo, por favor no uses el Servicio.
+        </div>
+    </article>
+</main>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer__grid">
+            <div class="footer__col">
+                <span class="logo-mark">📖</span>
+                <p class="footer__brand"><strong>Lectura Viva</strong></p>
+                <p class="footer__tagline">Fomentando la lectura comprensiva en estudiantes de 10°, 11° y 12°.</p>
+            </div>
+
+            <div class="footer__col">
+                <h4>Proyecto</h4>
+                <ul>
+                    <li><a href="/#por-que">¿Por qué importa?</a></li>
+                    <li><a href="/#niveles">Los 3 niveles</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h4>Comunidad</h4>
+                <ul>
+                    <li><a href="/ranking">Ranking</a></li>
+                    <li><a href="/comunidad">Comentarios</a></li>
+                    <li><a href="https://chat.whatsapp.com/GvQheMLbFPm3ea5XaJh2DQ" target="_blank" rel="noopener">Grupo de WhatsApp</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="terminos.html">Términos y Condiciones</a></li>
+                    <li><a href="privacidad.html">Política de Privacidad</a></li>
+                </ul>
+                <p class="footer__small" style="margin-top: 16px;">
+                    © 2026 Lectura Viva. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ============== SCRIPTS ============== -->
+<script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore-compat.js"></script>
+
+<script src="firebase-config.js"></script>
+<script src="auth.js"></script>
+<script src="firestore.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

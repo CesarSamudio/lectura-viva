@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectura Viva — Política de Privacidad</title>
+    <meta name="description" content="Política de privacidad de Lectura Viva. Qué datos recopilamos, cómo los usamos, cómo los protegemos y tus derechos.">
+    <meta name="robots" content="noindex">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
+    <style>
+        .legal {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 48px 24px 96px;
+        }
+        .legal h1 {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 5vw, 44px);
+            font-weight: 800;
+            color: var(--ink);
+            margin: 32px 0 8px;
+            line-height: 1.15;
+        }
+        .legal__updated {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--mute);
+            background: var(--paper-deep);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 32px;
+        }
+        .legal h2 {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--ink);
+            margin: 48px 0 12px;
+            padding-top: 16px;
+            border-top: 2px dashed var(--rule);
+        }
+        .legal h2:first-of-type {
+            border-top: none;
+            padding-top: 0;
+            margin-top: 24px;
+        }
+        .legal h3 {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--ink);
+            margin: 24px 0 8px;
+        }
+        .legal p, .legal li {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.75;
+            color: var(--ink-soft);
+            margin: 0 0 12px;
+        }
+        .legal ul, .legal ol {
+            padding-left: 24px;
+            margin: 0 0 16px;
+        }
+        .legal li {
+            margin-bottom: 8px;
+        }
+        .legal strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+        .legal a {
+            color: var(--orange);
+            text-decoration: underline;
+        }
+        .legal a:hover {
+            color: var(--orange-deep);
+        }
+        .legal__callout {
+            background: var(--postit);
+            border: 2px dashed var(--ink);
+            border-radius: var(--r-md);
+            padding: 16px 20px;
+            margin: 24px 0;
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .legal__callout strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+        .legal__toc {
+            background: var(--paper-deep);
+            border: 2px dashed var(--rule);
+            border-radius: var(--r-md);
+            padding: 20px 24px;
+            margin: 0 0 32px;
+        }
+        .legal__toc h2 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--mute);
+            margin: 0 0 12px;
+            padding: 0;
+            border: none;
+            font-family: var(--font-mono);
+            font-weight: 700;
+        }
+        .legal__toc ol {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            counter-reset: toc-counter;
+        }
+        .legal__toc li {
+            counter-increment: toc-counter;
+            margin: 4px 0;
+            padding: 0;
+            font-size: 14px;
+        }
+        .legal__toc li::before {
+            content: counter(toc-counter) ". ";
+            color: var(--mute);
+            font-family: var(--font-mono);
+            margin-right: 8px;
+        }
+        .legal__toc a {
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .legal__toc a:hover {
+            color: var(--orange);
+            text-decoration: underline;
+        }
+        .legal__table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 24px;
+            font-family: var(--font-body);
+            font-size: 14px;
+        }
+        .legal__table th {
+            background: var(--paper-deep);
+            padding: 10px 12px;
+            text-align: left;
+            border: 1px solid var(--rule);
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .legal__table td {
+            padding: 10px 12px;
+            border: 1px solid var(--rule);
+            color: var(--ink-soft);
+            vertical-align: top;
+        }
+        .legal__table tr:nth-child(even) td {
+            background: rgba(252, 250, 245, 0.5);
+        }
+    </style>
+</head>
+<body class="page-enter">
+
+<!-- ============== HEADER ============== -->
+<header class="header" id="header">
+    <nav class="header__nav">
+        <a href="/" class="header__logo">
+            <span class="logo-mark">📖</span>
+            <span class="logo-text">Lectura <strong>Viva</strong></span>
+        </a>
+
+        <ul class="header__menu">
+            <li><a href="/#niveles">Niveles</a></li>
+            <li><a href="/jugar">Jugar</a></li>
+            <li><a href="/ranking">Ranking</a></li>
+            <li><a href="/comunidad">Comunidad</a></li>
+        </ul>
+
+        <div class="header__cta">
+            <button class="btn btn--primary" id="loginBtn" hidden>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.35 11.1H12v3.8h5.59c-.56 2.7-2.86 4.1-5.59 4.1A6.5 6.5 0 1 1 12 5.5c1.6 0 3.05.6 4.2 1.55l2.7-2.7A9.9 9.9 0 0 0 12 2.5a9.5 9.5 0 1 0 0 19c5.5 0 9.5-3.9 9.5-9.4 0-.7-.05-1.3-.15-1.95z"/></svg>
+                Iniciar con Google
+            </button>
+            <div class="user-chip" id="userChip" hidden>
+                <img src="" alt="" class="user-chip__avatar" id="userAvatar">
+                <span class="user-chip__name" id="userName">Cargando...</span>
+                <button class="user-chip__edit" id="editNickBtn" aria-label="Editar nickname" title="Editar nickname">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+                </button>
+                <button class="user-chip__menu" id="userMenu" aria-label="Menú">⋮</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <article class="legal">
+        <h1>Política de Privacidad</h1>
+        <span class="legal__updated">Última actualización: 07 de julio de 2026</span>
+
+        <nav class="legal__toc">
+            <h2>Contenido</h2>
+            <ol>
+                <li><a href="#intro">Introducción y compromiso</a></li>
+                <li><a href="#datos">Qué datos recopilamos</a></li>
+                <li><a href="#uso">Para qué usamos tus datos</a></li>
+                <li><a href="#base">Base legal para el tratamiento</a></li>
+                <li><a href="#compartimos">Con quién compartimos tus datos</a></li>
+                <li><a href="#proveedores">Proveedores de servicios</a></li>
+                <li><a href="#proteccion">Cómo protegemos tus datos</a></li>
+                <li><a href="#retencion">Cuánto tiempo guardamos tus datos</a></li>
+                <li><a href="#derechos">Tus derechos</a></li>
+                <li><a href="#menores">Privacidad de menores</a></li>
+                <li><a href="#cookies">Cookies y tecnologías similares</a></li>
+                <li><a href="#transferencias">Transferencias internacionales</a></li>
+                <li><a href="#cambios">Cambios a esta política</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ol>
+        </nav>
+
+        <h2 id="intro">1. Introducción y compromiso</h2>
+        <p>En <strong>Lectura Viva</strong> tomamos la privacidad muy en serio, especialmente porque nuestros usuarios son en su mayoría <strong>estudiantes menores de edad</strong> (10° a 12°).</p>
+        <p>Esta Política describe:</p>
+        <ul>
+            <li>Qué información recopilamos cuando usás nuestro Servicio.</li>
+            <li>Para qué la usamos.</li>
+            <li>Cómo la protegemos.</li>
+            <li>Qué derechos tenés sobre tus datos.</li>
+            <li>Cómo contactarnos para ejercer esos derechos.</li>
+        </ul>
+        <p>Usamos el mínimo de datos necesarios para que el Servicio funcione. <strong>No vendemos datos personales</strong> de ningún usuario.</p>
+        <div class="legal__callout">
+            <strong>🔒 Nuestro principio fundamental</strong>
+            Si una funcionalidad no aporta valor educativo real y requiere más datos de los necesarios, no la implementamos.
+        </div>
+
+        <h2 id="datos">2. Qué datos recopilamos</h2>
+
+        <h3>2.1. Datos que nos das vos directamente</h3>
+        <p>Al iniciar sesión con Google y usar Lectura Viva, obtenemos:</p>
+
+        <table class="legal__table">
+            <thead>
+                <tr><th>Dato</th><th>Origen</th><th>¿Obligatorio?</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Nombre para mostrar</td><td>Google Sign-In</td><td>Sí</td></tr>
+                <tr><td>Dirección de correo electrónico</td><td>Google Sign-In</td><td>Sí</td></tr>
+                <tr><td>Foto de perfil (URL)</td><td>Google Sign-In</td><td>Opcional (depende de tu config en Google)</td></tr>
+                <tr><td>Identificador único de Google (UID)</td><td>Google Sign-In</td><td>Sí</td></tr>
+                <tr><td>Nickname público</td><td>Lo elegís vos (puede ser el de Google o uno custom)</td><td>Sí</td></tr>
+                <tr><td>Comentarios en la comunidad</td><td>Lo escribís vos</td><td>Opcional</td></tr>
+            </tbody>
+        </table>
+
+        <h3>2.2. Datos que se generan al usar el Servicio</h3>
+        <ul>
+            <li><strong>Puntajes</strong> del quiz (mejor puntaje histórico, partidas jugadas, fecha de última partida).</li>
+            <li><strong>Comentarios</strong> enviados y estado de moderación (pendiente / aprobado / rechazado).</li>
+            <li><strong>Cambios de nickname</strong> (historial de últimas modificaciones — para enforcing del cooldown de 30 días).</li>
+        </ul>
+
+        <h3>2.3. Datos técnicos (automáticos)</h3>
+        <p>Como casi todo sitio web, registramos automáticamente algunos datos técnicos mínimos:</p>
+        <ul>
+            <li><strong>Dirección IP</strong>: la usa Firebase para prevenir abuso y proteger la cuenta. No la almacenamos nosotros directamente.</li>
+            <li><strong>Agente de usuario (User-Agent)</strong>: para detectar problemas técnicos.</li>
+            <li><strong>Eventos de uso agregados</strong>: Firebase puede registrar eventos como "login exitoso" o "partida terminada" con fines de debugging y monitoreo.</li>
+        </ul>
+        <p><strong>No usamos cookies de tracking publicitario ni scripts de terceros para analytics.</strong></p>
+
+        <h3>2.4. Lo que NO recopilamos</h3>
+        <ul>
+            <li>No recopilamos <strong>datos de geolocalización precisa</strong>.</li>
+            <li>No accedemos a tu <strong>cámara, micrófono, contactos, archivos</strong> del dispositivo.</li>
+            <li>No usamos <strong>fingerprinting</strong> del dispositivo.</li>
+            <li>No vendemos ni compartimos datos con <strong>advertisers o data brokers</strong>.</li>
+            <li>No hacemos <strong>perfilado automatizado</strong> para decisiones que te afecten significativamente.</li>
+        </ul>
+
+        <h2 id="uso">3. Para qué usamos tus datos</h2>
+        <p>Usamos los datos recopilados <strong>exclusivamente</strong> para:</p>
+        <ul>
+            <li><strong>Autenticarte</strong> cuando iniciás sesión con Google.</li>
+            <li><strong>Mostrar tu nickname y foto</strong> en el ranking público y en tus comentarios aprobados.</li>
+            <li><strong>Guardar tu progreso</strong> en el quiz (puntaje, partidas jugadas).</li>
+            <li><strong>Moderar</strong> los comentarios que envías antes de publicarlos.</li>
+            <li><strong>Prevenir abuso</strong>: anti-spam del juego (límite diario de 2 partidas), rate limiting, detección de bots.</li>
+            <li><strong>Mejorar el Servicio</strong>: entender qué preguntas funcionan mejor, qué temas son más populares (agregado, no individual).</li>
+            <li><strong>Cumplir obligaciones legales</strong>: responder a requerimientos válidos de autoridades.</li>
+        </ul>
+        <p><strong>Nunca</strong> usamos tus datos para enviarte publicidad, venderlos a terceros, o contactarte sin tu consentimiento explícito.</p>
+
+        <h2 id="base">4. Base legal para el tratamiento</h2>
+        <p>Dependiendo de la jurisdicción aplicable, tratamos tus datos bajo las siguientes bases legales:</p>
+        <ul>
+            <li><strong>Consentimiento</strong>: al iniciar sesión con Google, consentís explícitamente este tratamiento.</li>
+            <li><strong>Ejecución del contrato</strong>: el servicio que te brindamos requiere estos datos para funcionar (autenticación, persistencia del puntaje).</li>
+            <li><strong>Interés legítimo</strong>: para prevenir abuso y mantener la integridad del ranking y de la comunidad.</li>
+            <li><strong>Cumplimiento legal</strong>: cuando una autoridad competente nos lo requiera.</li>
+        </ul>
+
+        <h2 id="compartimos">5. Con quién compartimos tus datos</h2>
+        <p><strong>No vendemos tus datos.</strong> Solo los compartimos con:</p>
+
+        <h3>5.1. Proveedores de infraestructura</h3>
+        <ul>
+            <li><strong>Google Firebase</strong> (Authentication + Firestore): almacena tus datos. Está sujeto a la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de Privacidad de Google</a>.</li>
+            <li><strong>Cloudflare</strong>: aloja el Worker que genera preguntas con IA. No recibe datos personales (solo nivel y tema del quiz).</li>
+            <li><strong>OpenRouter</strong>: API externa para generación de preguntas con IA. <strong>No recibe información personal identificable</strong>: solo el nivel (literal/inferencial/crítica) y el tema.</li>
+        </ul>
+
+        <h3>5.2. Otros usuarios (solo datos públicos)</h3>
+        <p>Cuando usás Lectura Viva con sesión activa, los siguientes datos son <strong>públicos</strong> para otros usuarios:</p>
+        <ul>
+            <li>Tu <strong>nickname</strong>.</li>
+            <li>Tu <strong>foto de perfil</strong> (si la tenés).</li>
+            <li>Tu <strong>puntaje en el ranking</strong>.</li>
+            <li>Tus <strong>comentarios aprobados</strong> en la sección Comunidad.</li>
+        </ul>
+        <p>Tu <strong>email NO es público</strong> en ningún caso.</p>
+
+        <h3>5.3. Autoridades legales</h3>
+        <p>Si recibimos un requerimiento legal válido de una autoridad competente, podemos compartir información. Haremos nuestro mejor esfuerzo para notificarte antes, salvo que estemos legalmente impedidos de hacerlo.</p>
+
+        <h2 id="proveedores">6. Proveedores de servicios</h2>
+        <p>Detalle de los terceros que usamos:</p>
+
+        <table class="legal__table">
+            <thead>
+                <tr><th>Proveedor</th><th>Servicio</th><th>Datos compartidos</th><th>Política</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Google Firebase</td>
+                    <td>Auth + Base de datos</td>
+                    <td>Email, nombre, foto, puntajes, comentarios</td>
+                    <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></td>
+                </tr>
+                <tr>
+                    <td>Cloudflare Workers</td>
+                    <td>Generación de preguntas con IA</td>
+                    <td>Solo nivel y tema (sin datos personales)</td>
+                    <td><a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></td>
+                </tr>
+                <tr>
+                    <td>OpenRouter</td>
+                    <td>API de IA (LLM)</td>
+                    <td>Solo nivel y tema (sin datos personales)</td>
+                    <td><a href="https://openrouter.ai/privacy" target="_blank" rel="noopener">openrouter.ai/privacy</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="proteccion">7. Cómo protegemos tus datos</h2>
+        <p>Aplicamos medidas técnicas y organizativas para proteger tu información:</p>
+
+        <h3>Medidas técnicas</h3>
+        <ul>
+            <li><strong>HTTPS en todo el sitio</strong>: toda la comunicación entre tu navegador y nuestros servidores va cifrada.</li>
+            <li><strong>Reglas de Firestore</strong>: configuradas para que solo usuarios autenticados puedan escribir en sus propios datos. Ningún usuario puede leer o escribir datos de otros.</li>
+            <li><strong>API keys del lado servidor</strong>: las claves de OpenRouter y otros servicios están en variables de entorno del Worker, no expuestas al cliente.</li>
+            <li><strong>Validación de inputs</strong>: el nickname se valida con regex Unicode, los comentarios con límites de longitud, los puntajes con rangos permitidos (defensa contra inyección).</li>
+            <li><strong>Anti-spam</strong>: límite de 2 partidas por día por usuario, enforced tanto en cliente como en reglas del servidor.</li>
+        </ul>
+
+        <h3>Medidas organizativas</h3>
+        <ul>
+            <li><strong>Acceso mínimo</strong>: solo el operador del Servicio tiene acceso administrativo a la base de datos.</li>
+            <li><strong>Moderación humana</strong>: los comentarios los revisa una persona, no un algoritmo.</li>
+            <li><strong>Backups</strong>: Firebase hace backups automáticos de Firestore.</li>
+        </ul>
+
+        <h3>Lo que NO podemos garantizar</h3>
+        <p>Ningún sistema es 100% seguro. Si sufrimos una brecha de seguridad que afecte tus datos, te notificaremos en un plazo razonable y tomaremos las medidas necesarias (incluyendo aviso a las autoridades si corresponde).</p>
+
+        <h2 id="retencion">8. Cuánto tiempo guardamos tus datos</h2>
+        <table class="legal__table">
+            <thead>
+                <tr><th>Dato</th><th>Retención</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Cuenta (email, nombre, foto)</td><td>Mientras tu cuenta esté activa. Al eliminar la cuenta: borrado en 30 días.</td></tr>
+                <tr><td>Puntajes y partidas</td><td>Mientras tu cuenta esté activa.</td></tr>
+                <tr><td>Comentarios aprobados</td><td>Hasta que vos o un moderador los elimine.</td></tr>
+                <tr><td>Comentarios rechazados</td><td>Se eliminan automáticamente al ser rechazados.</td></tr>
+                <tr><td>Historial de cambios de nickname</td><td>Se usa solo para enforcing del cooldown de 30 días. No se muestra públicamente.</td></tr>
+                <tr><td>Logs de Firebase</td><td>Según política de Google (típicamente 30-90 días).</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="derechos">9. Tus derechos</h2>
+        <p>Dependiendo de tu jurisdicción (especialmente si estás en la UE/EEE, Reino Unido, California u otras regiones con leyes de protección de datos), tenés los siguientes derechos sobre tus datos personales:</p>
+        <ul>
+            <li><strong>Acceso</strong>: pedir una copia de los datos que tenemos sobre vos.</li>
+            <li><strong>Rectificación</strong>: corregir datos inexactos o incompletos.</li>
+            <li><strong>Supresión</strong> ("derecho al olvido"): pedir que eliminemos tus datos.</li>
+            <li><strong>Limitación</strong>: pedir que restrinjamos el procesamiento en ciertas circunstancias.</li>
+            <li><strong>Portabilidad</strong>: recibir tus datos en un formato estructurado y legible por máquina.</li>
+            <li><strong>Oposición</strong>: oponerte al procesamiento basado en interés legítimo.</li>
+            <li><strong>Retirar consentimiento</strong>: si el procesamiento se basa en tu consentimiento, podés retirarlo en cualquier momento.</li>
+        </ul>
+        <h3>Cómo ejercerlos</h3>
+        <p>Para ejercer cualquiera de estos derechos, contactanos por email a <a href="mailto:privacidad@lecturaviva.app">privacidad@lecturaviva.app</a>. Responderemos en un plazo de <strong>15 días hábiles</strong>.</p>
+        <p>Si no estás conforme con nuestra respuesta, podés escalar el reclamo a la autoridad de protección de datos de tu país. En Colombia, esa autoridad es la <strong>Superintendencia de Industria y Comercio (SIC)</strong>.</p>
+
+        <h2 id="menores">10. Privacidad de menores</h2>
+        <p>Lectura Viva está diseñado para estudiantes de 10° a 12° (típicamente 15-17 años), pero también puede ser usado por adultos. Aplica un estándar alto de protección:</p>
+        <ul>
+            <li><strong>No recopilamos intencionalmente datos de menores de 13 años</strong> sin consentimiento parental verificable.</li>
+            <li>Para usuarios entre 13 y 18 años, requerimos que tengan <strong>autorización de un adulto responsable</strong> (padre, madre o tutor) antes de usar el Servicio.</li>
+            <li><strong>No mostramos publicidad</strong> dirigida a menores.</li>
+            <li><strong>No creamos perfiles de comportamiento</strong> para marketing.</li>
+            <li>Toda la <strong>moderación de contenido</strong> es manual (no algorítmica).</li>
+            <li>Los datos son los <strong>mínimos necesarios</strong> para el funcionamiento del Servicio.</li>
+        </ul>
+        <p>Si sos padre/madre/tutor y tu hijo menor de 13 años usó el Servicio sin tu autorización, contactanos a <a href="mailto:privacidad@lecturaviva.app">privacidad@lecturaviva.app</a> para eliminar su cuenta y todos los datos asociados.</p>
+
+        <h2 id="cookies">11. Cookies y tecnologías similares</h2>
+        <p>Usamos cookies y almacenamiento local <strong>estrictamente</strong> para que el Servicio funcione. No usamos cookies de publicidad ni de tracking entre sitios.</p>
+        <table class="legal__table">
+            <thead>
+                <tr><th>Tecnología</th><th>Propósito</th><th>Duración</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>localStorage: Firebase Auth</td><td>Mantener tu sesión activa entre recargas</td><td>Persistente (hasta logout)</td></tr>
+                <tr><td>localStorage: cache de ranking y comentarios</td><td>Evitar llamadas repetidas a Firestore</td><td>Persistente (60s TTL)</td></tr>
+                <tr><td>localStorage: cache del Worker IA</td><td>Evitar llamadas repetidas al Worker</td><td>Persistente (60s TTL)</td></tr>
+            </tbody>
+        </table>
+        <p>Si bloqueás estas cookies o almacenamiento, el Servicio seguirá funcionando pero perderás cosas como "mantener sesión" o "no repetir partidas tan rápido".</p>
+
+        <h2 id="transferencias">12. Transferencias internacionales</h2>
+        <p>Algunos de nuestros proveedores (Google, Cloudflare, OpenRouter) almacenan o procesan datos en servidores fuera de Colombia. Al usar Lectura Viva, entendés y aceptás que tus datos pueden ser transferidos a:</p>
+        <ul>
+            <li><strong>Estados Unidos</strong> (Google, Cloudflare, OpenRouter).</li>
+            <li><strong>Otros países</strong> donde estos proveedores tengan infraestructura.</li>
+        </ul>
+        <p>Estos proveedores cumplen con marcos de protección de datos reconocidos internacionalmente (como el <strong>EU-US Data Privacy Framework</strong>) y aplican medidas de seguridad equivalentes.</p>
+
+        <h2 id="cambios">13. Cambios a esta política</h2>
+        <p>Podemos modificar esta Política de Privacidad. Cuando lo hagamos:</p>
+        <ul>
+            <li>Actualizaremos la fecha "Última actualización" arriba.</li>
+            <li>Si el cambio es <strong>material</strong> (afecta qué datos recopilamos o cómo los usamos), notificaremos a los usuarios registrados por email (si lo tenemos) o mediante aviso visible en la web.</li>
+            <li>Te recomendamos revisar esta política periódicamente.</li>
+        </ul>
+
+        <h2 id="contacto">14. Contacto y ejercer tus derechos</h2>
+        <p>Para cualquier pregunta sobre privacidad, para ejercer tus derechos, o para reportar un problema:</p>
+        <ul>
+            <li><strong>Email de privacidad:</strong> <a href="mailto:privacidad@lecturaviva.app">privacidad@lecturaviva.app</a></li>
+            <li><strong>Email general:</strong> <a href="mailto:legal@lecturaviva.app">legal@lecturaviva.app</a></li>
+            <li><strong>Grupo de WhatsApp</strong> (en la web, sección Comunidad)</li>
+        </ul>
+        <p>Compromiso de respuesta: <strong>15 días hábiles</strong>.</p>
+
+        <div class="legal__callout">
+            <strong>📌 Tu privacidad es importante</strong>
+            Si tenés alguna duda sobre cómo manejamos tus datos, contactanos. Preferimos responder una pregunta simple a que te quedes con la duda.
+        </div>
+
+        <p style="margin-top: 32px; text-align: center;">
+            <a href="terminos.html" style="color: var(--orange);">← Ver Términos y Condiciones</a>
+        </p>
+    </article>
+</main>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer__grid">
+            <div class="footer__col">
+                <span class="logo-mark">📖</span>
+                <p class="footer__brand"><strong>Lectura Viva</strong></p>
+                <p class="footer__tagline">Fomentando la lectura comprensiva en estudiantes de 10°, 11° y 12°.</p>
+            </div>
+
+            <div class="footer__col">
+                <h4>Proyecto</h4>
+                <ul>
+                    <li><a href="/#por-que">¿Por qué importa?</a></li>
+                    <li><a href="/#niveles">Los 3 niveles</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h4>Comunidad</h4>
+                <ul>
+                    <li><a href="/ranking">Ranking</a></li>
+                    <li><a href="/comunidad">Comentarios</a></li>
+                    <li><a href="https://chat.whatsapp.com/GvQheMLbFPm3ea5XaJh2DQ" target="_blank" rel="noopener">Grupo de WhatsApp</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="terminos.html">Términos y Condiciones</a></li>
+                    <li><a href="privacidad.html">Política de Privacidad</a></li>
+                </ul>
+                <p class="footer__small" style="margin-top: 16px;">
+                    © 2026 Lectura Viva. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ============== SCRIPTS ============== -->
+<script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore-compat.js"></script>
+
+<script src="firebase-config.js"></script>
+<script src="auth.js"></script>
+<script src="firestore.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
