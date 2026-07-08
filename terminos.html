@@ -11,6 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
+    <!-- Fix de paths para deploy en GitHub Pages -->
+    <script src="fix-deploy-paths.js"></script>
+
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📜</text></svg>">
     <style>
@@ -149,16 +152,16 @@
 <!-- ============== HEADER ============== -->
 <header class="header" id="header">
     <nav class="header__nav">
-        <a href="/" class="header__logo">
+        <a href="./index.html" class="header__logo">
             <span class="logo-mark">📖</span>
             <span class="logo-text">Lectura <strong>Viva</strong></span>
         </a>
 
         <ul class="header__menu">
-            <li><a href="/#niveles">Niveles</a></li>
-            <li><a href="/jugar">Jugar</a></li>
-            <li><a href="/ranking">Ranking</a></li>
-            <li><a href="/comunidad">Comunidad</a></li>
+            <li><a href="./index.html#niveles">Niveles</a></li>
+            <li><a href="jugar.html">Jugar</a></li>
+            <li><a href="ranking.html">Ranking</a></li>
+            <li><a href="comunidad.html">Comunidad</a></li>
         </ul>
 
         <div class="header__cta">
@@ -359,16 +362,16 @@
             <div class="footer__col">
                 <h4>Proyecto</h4>
                 <ul>
-                    <li><a href="/#por-que">¿Por qué importa?</a></li>
-                    <li><a href="/#niveles">Los 3 niveles</a></li>
+                    <li><a href="./index.html#por-que">¿Por qué importa?</a></li>
+                    <li><a href="./index.html#niveles">Los 3 niveles</a></li>
                 </ul>
             </div>
 
             <div class="footer__col">
                 <h4>Comunidad</h4>
                 <ul>
-                    <li><a href="/ranking">Ranking</a></li>
-                    <li><a href="/comunidad">Comentarios</a></li>
+                    <li><a href="ranking.html">Ranking</a></li>
+                    <li><a href="comunidad.html">Comentarios</a></li>
                     <li><a href="https://chat.whatsapp.com/GvQheMLbFPm3ea5XaJh2DQ" target="_blank" rel="noopener">Grupo de WhatsApp</a></li>
                 </ul>
             </div>

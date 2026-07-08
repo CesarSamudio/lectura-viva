@@ -16,6 +16,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Caveat:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
+    <!-- Fix de paths para deploy en GitHub Pages (debe ir ANTES del CSS y JS) -->
+    <script src="fix-deploy-paths.js"></script>
+
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
 </head>
@@ -24,13 +27,13 @@
 <!-- ============== HEADER (pill flotante con borde dashed) ============== -->
 <header class="header" id="header">
     <nav class="header__nav">
-        <a href="/" class="header__logo">
+        <a href="./" class="header__logo">
             <span class="logo-mark">📖</span>
             <span class="logo-text">Lectura <strong>Viva</strong></span>
         </a>
 
         <ul class="header__menu">
-            <li><a href="#niveles">Niveles</a></li>
+            <li><a href="./index.html#niveles">Niveles</a></li>
             <li><a href="jugar.html">Jugar</a></li>
             <li><a href="ranking.html">Ranking</a></li>
             <li><a href="comunidad.html">Comunidad</a></li>

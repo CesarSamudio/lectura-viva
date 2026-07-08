@@ -20,6 +20,11 @@ respuesta pdfs/
 reglas-firestore-actuales.txt
 reglas-firestore-dia5.txt
 
+# Panel admin (NO público — maneja comentarios moderados con auth Firebase)
+admin.html
+admin.js
+admin.css
+
 # Mockups de prueba que usamos para diseñar — no son parte del producto
 hero-mockup-a.html
 hero-mockup-b.html

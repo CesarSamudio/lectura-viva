@@ -12,6 +12,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
+    <!-- Fix de paths para deploy en GitHub Pages -->
+    <script src="fix-deploy-paths.js"></script>
+
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
 </head>
@@ -20,13 +23,13 @@
 <!-- ============== HEADER ============== -->
 <header class="header" id="header">
     <nav class="header__nav">
-        <a href="/" class="header__logo">
+        <a href="./index.html" class="header__logo">
             <span class="logo-mark">📖</span>
             <span class="logo-text">Lectura <strong>Viva</strong></span>
         </a>
 
         <ul class="header__menu">
-            <li><a href="/#niveles">Niveles</a></li>
+            <li><a href="./index.html#niveles">Niveles</a></li>
             <li><a href="jugar.html" class="is-active">Jugar</a></li>
             <li><a href="ranking.html">Ranking</a></li>
             <li><a href="comunidad.html">Comunidad</a></li>
@@ -59,7 +62,7 @@
 <!-- Panel del menú móvil — oculto en desktop, abre con clase .is-open -->
 <div class="header__overlay" id="headerOverlay"></div>
 <nav class="header__menu--mobile" id="headerMenuMobile" aria-label="Navegación móvil">
-    <a href="#niveles">Niveles</a>
+    <a href="./index.html#niveles">Niveles</a>
     <a href="jugar.html">Jugar</a>
     <a href="ranking.html">Ranking</a>
     <a href="comunidad.html">Comunidad</a>
@@ -122,7 +125,7 @@
                     <div class="game__result-actions">
                         <button class="btn btn--primary" id="playAgainBtn">Jugar de nuevo</button>
                         <a href="ranking.html" class="btn btn--ghost">Ver ranking</a>
-                        <a href="/" class="btn btn--ghost">Volver al inicio</a>
+                        <a href="./index.html" class="btn btn--ghost">Volver al inicio</a>
                     </div>
                 </div>
             </div>
@@ -169,8 +172,8 @@
             <div class="footer__col">
                 <h4>Proyecto</h4>
                 <ul>
-                    <li><a href="/#por-que">¿Por qué importa?</a></li>
-                    <li><a href="/#niveles">Los 3 niveles</a></li>
+                    <li><a href="./index.html#por-que">¿Por qué importa?</a></li>
+                    <li><a href="./index.html#niveles">Los 3 niveles</a></li>
                 </ul>
             </div>
 
