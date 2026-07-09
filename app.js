@@ -466,8 +466,10 @@ async function iniciarJuego() {
             return false;
         });
 
-        // 2) Esperar HASTA 45s. Los LLMs free tardan en arrancar (cold start).
-        const TIEMPO_MAX_ESPERA_MS = 45000;
+        // 2) Esperar HASTA 75s. Los LLMs free tardan en arrancar (cold start)
+        // y en conexiones lentas de alumnos pueden pasar 60+ segundos.
+        // Subimos de 45s a 75s para tolerar bien la red real de los estudiantes.
+        const TIEMPO_MAX_ESPERA_MS = 75000;
         await Promise.race([
             enriquecimientoPromise,
             new Promise((resolve) => setTimeout(resolve, TIEMPO_MAX_ESPERA_MS)),
@@ -554,6 +556,29 @@ async function enriquecerBancoConWorker(opts = {}) {
         return _workerCache.ok;
     }
 
+    // CACHE PERSISTENTE en localStorage con TTL de 1 hora.
+    // Esto evita llamar al Worker en partidas subsiguientes del mismo alumno,
+    // bajando el rate de presión sobre OpenRouter free tier (~20 req/min).
+    // Reduce drásticamente la frecuencia del "banco hardcodeado".
+    if (!force) {
+        try {
+            const cacheRaw = localStorage.getItem('lecturaViva_iaCache');
+            if (cacheRaw) {
+                const cache = JSON.parse(cacheRaw);
+                const ttl = 60 * 60 * 1000; // 1 hora
+                if (cache.ts && (Date.now() - cache.ts) < ttl && Array.isArray(cache.preguntas)) {
+                    _preguntasIA = cache.preguntas;
+                    _workerCache.ts = Date.now();
+                    _workerCache.ok = true;
+                    console.log(`[app] Pool IA restaurado desde localStorage (${cache.preguntas.length} preguntas, age=${Math.round((Date.now()-cache.ts)/1000)}s). Worker NO se llama.`);
+                    return true;
+                }
+            }
+        } catch (e) {
+            // Si falla localStorage, seguimos normal
+        }
+    }
+
     // Si ya tenemos stock suficiente en _preguntasIA (cache en memoria),
     // NO pedimos al Worker de nuevo — usamos lo que hay.
     const stockLiteral = _preguntasIA.filter(p => p.nivel === 'literal').length;
@@ -563,6 +588,13 @@ async function enriquecerBancoConWorker(opts = {}) {
     if (!force && stockSuficiente) {
         _workerCache.ts = Date.now();
         _workerCache.ok = true;
+        // Persistir a localStorage para próximas partidas
+        try {
+            localStorage.setItem('lecturaViva_iaCache', JSON.stringify({
+                ts: Date.now(),
+                preguntas: _preguntasIA,
+            }));
+        } catch (e) {}
         console.log(`[app] Reutilizando pool IA en memoria (literal:${stockLiteral}, inferencial:${stockInferencial}, critica:${stockCritica}). Worker NO se llama.`);
         return true;
     }
@@ -570,8 +602,7 @@ async function enriquecerBancoConWorker(opts = {}) {
     // Elegir 1 tema al azar para esta tanda
     const tema = TEMAS_ROTATIVOS[Math.floor(Math.random() * TEMAS_ROTATIVOS.length)];
 
-    // Pedir 4 preguntas por nivel (12 total) para tener margen: la partida usa
-    // 4 literal + 3 inferencial + 3 crítica = 10 preguntas.
+    // Pedir 4 preguntas por nivel (12 total). Mínimo para partida: 4+3+3=10.
     const niveles = ['literal', 'inferencial', 'critica'];
     const promesas = niveles.map((nivel) =>
         fetch(WORKER_URL + '/api/generar-preguntas', {
@@ -610,6 +641,18 @@ async function enriquecerBancoConWorker(opts = {}) {
             // Push al pool IA (separado del banco hardcodeado PREGUNTAS)
             _preguntasIA.push(...validas);
             console.log(`[app] +${validas.length} preguntas IA al pool (tema: ${tema}). Total pool IA: ${_preguntasIA.length}`);
+
+            // PERSISTIR A LOCALSTORAGE: próxima partida del mismo alumno
+            // usa este cache en vez de pegarle al Worker (reduce rate pressure).
+            try {
+                localStorage.setItem('lecturaViva_iaCache', JSON.stringify({
+                    ts: Date.now(),
+                    preguntas: _preguntasIA,
+                }));
+                console.log(`[app] Pool IA persistido a localStorage (${_preguntasIA.length} preguntas, TTL 1h)`);
+            } catch (e) {
+                console.warn('[app] No se pudo persistir a localStorage:', e.message);
+            }
         }
 
         _workerCache.ts = Date.now();
