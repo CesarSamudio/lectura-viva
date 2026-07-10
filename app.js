@@ -3,6 +3,12 @@
    Quiz + comentarios + animaciones reveal
    ===================================================== */
 
+// Flag de debug: los console.log de info solo aparecen si está activo.
+// Para activarlo en consola del navegador: window.__LECTURA_VIVA_DEBUG__ = true;
+// console.error y console.warn SIEMPRE se muestran (son señal de problemas).
+window.__LECTURA_VIVA_DEBUG__ = window.__LECTURA_VIVA_DEBUG__ || false;
+const debug = (...args) => { if (window.__LECTURA_VIVA_DEBUG__) console.log(...args); };
+
 // ---------- BANCO DE PREGUNTAS ----------
 // Estructura: { nivel, texto (opcional), pregunta, opciones: [], correcta: 0-3 }
 const PREGUNTAS = [
@@ -449,7 +455,7 @@ async function iniciarJuego() {
         const inferencialResto = _preguntasIA.filter(p => p.nivel === 'inferential').slice(3, 3 + inferencialMantener);
         const criticaResto = _preguntasIA.filter(p => p.nivel === 'critical').slice(3, 3 + criticaMantener);
         _preguntasIA = [...literalResto, ...inferencialResto, ...criticaResto];
-        console.log(`[app] Reusando pool IA (literal:${stockLiteral}, inferencial:${stockInferencial}, critica:${stockCritica}). NO se llama al Worker.`);
+        debug(`[app] Reusando pool IA (literal:${stockLiteral}, inferencial:${stockInferencial}, critica:${stockCritica}). NO se llama al Worker.`);
     } else {
         // Pool insuficiente o vacío → reset y pedir al Worker
         _preguntasIA = [];
@@ -505,7 +511,7 @@ async function iniciarJuego() {
         console.warn(`[app] Pool IA insuficiente. literal:${preguntasIADisponibles.literal}/${nivelesNecesarios.literal}, inferencial:${preguntasIADisponibles.inferential}/${nivelesNecesarios.inferential}, critica:${preguntasIADisponibles.critical}/${nivelesNecesarios.critical}. Usando banco.`);
     }
 
-    console.log(`[app] Partida con ${fuente.length} preguntas (fuente: ${etiqueta})`);
+    debug(`[app] Partida con ${fuente.length} preguntas (fuente: ${etiqueta})`);
 
     const literales = shuffle(fuente.filter(p => p.nivel === 'literal')).slice(0, 4);
     const inferenciales = shuffle(fuente.filter(p => p.nivel === 'inferential')).slice(0, 3);
@@ -570,7 +576,7 @@ async function enriquecerBancoConWorker(opts = {}) {
                     _preguntasIA = cache.preguntas;
                     _workerCache.ts = Date.now();
                     _workerCache.ok = true;
-                    console.log(`[app] Pool IA restaurado desde localStorage (${cache.preguntas.length} preguntas, age=${Math.round((Date.now()-cache.ts)/1000)}s). Worker NO se llama.`);
+                    debug(`[app] Pool IA restaurado desde localStorage (${cache.preguntas.length} preguntas, age=${Math.round((Date.now()-cache.ts)/1000)}s). Worker NO se llama.`);
                     return true;
                 }
             }
@@ -595,7 +601,7 @@ async function enriquecerBancoConWorker(opts = {}) {
                 preguntas: _preguntasIA,
             }));
         } catch (e) {}
-        console.log(`[app] Reutilizando pool IA en memoria (literal:${stockLiteral}, inferencial:${stockInferencial}, critica:${stockCritica}). Worker NO se llama.`);
+        debug(`[app] Reutilizando pool IA en memoria (literal:${stockLiteral}, inferencial:${stockInferencial}, critica:${stockCritica}). Worker NO se llama.`);
         return true;
     }
 
@@ -640,7 +646,7 @@ async function enriquecerBancoConWorker(opts = {}) {
         if (validas.length > 0) {
             // Push al pool IA (separado del banco hardcodeado PREGUNTAS)
             _preguntasIA.push(...validas);
-            console.log(`[app] +${validas.length} preguntas IA al pool (tema: ${tema}). Total pool IA: ${_preguntasIA.length}`);
+            debug(`[app] +${validas.length} preguntas IA al pool (tema: ${tema}). Total pool IA: ${_preguntasIA.length}`);
 
             // PERSISTIR A LOCALSTORAGE: próxima partida del mismo alumno
             // usa este cache en vez de pegarle al Worker (reduce rate pressure).
@@ -649,7 +655,7 @@ async function enriquecerBancoConWorker(opts = {}) {
                     ts: Date.now(),
                     preguntas: _preguntasIA,
                 }));
-                console.log(`[app] Pool IA persistido a localStorage (${_preguntasIA.length} preguntas, TTL 1h)`);
+                debug(`[app] Pool IA persistido a localStorage (${_preguntasIA.length} preguntas, TTL 1h)`);
             } catch (e) {
                 console.warn('[app] No se pudo persistir a localStorage:', e.message);
             }
@@ -1803,25 +1809,25 @@ function lanzarConfetti(opciones = {}) {
     }
 
     const start = () => {
-        console.log('[empezar] start() ejecutándose, agregando listeners...');
+        debug('[empezar] start() ejecutándose, agregando listeners...');
         // Botón empezar juego
         const startBtn = $('#startGameBtn');
-        console.log('[empezar] startBtn =', startBtn);
+        debug('[empezar] startBtn =', startBtn);
         if (startBtn) {
-            console.log('[empezar] agregando click listener al botón');
+            debug('[empezar] agregando click listener al botón');
 
             // TRUCO ANTI-OVERLAY: workaround para browsers que dejan overlays invisibles
             // capturando clicks. Atamos el handler TANTO al botón COMO al document,
             // y filtramos por target real o por burbujeo natural.
             const empezarHandler = async (e) => {
-                console.log('[empezar] >>> CLICK RECIBIDO <<< target =', e?.target?.tagName, e?.target?.id);
+                debug('[empezar] >>> CLICK RECIBIDO <<< target =', e?.target?.tagName, e?.target?.id);
                 if (e && e.preventDefault) e.preventDefault();
 
                 // LOGIN REQUERIDO: si no hay sesión, abrir popup de Google y abortar.
                 // No se puede jugar sin estar logueado.
                 const meNow = window.Auth && window.Auth.getCurrentUser ? window.Auth.getCurrentUser() : null;
                 if (!meNow) {
-                    console.log('[empezar] sin sesión, abriendo login');
+                    debug('[empezar] sin sesión, abriendo login');
                     if (window.Auth && window.Auth.signInWithGoogle) {
                         window.Auth.signInWithGoogle();
                     } else {
@@ -1833,7 +1839,7 @@ function lanzarConfetti(opciones = {}) {
 
                 // ADMIN BYPASS total: si sos admin, nunca se aplica límite local.
                 if (isCurrentUserAdmin()) {
-                    console.log('[empezar] admin bypass → iniciarJuego directo');
+                    debug('[empezar] admin bypass → iniciarJuego directo');
                     mostrarSpinnerGenerando(true);
                     iniciarJuego();
                     return;
@@ -1875,7 +1881,7 @@ function lanzarConfetti(opciones = {}) {
                 if (!startBtn.disabled && !startBtn._empezarFired) {
                     startBtn._empezarFired = true;
                     setTimeout(() => { startBtn._empezarFired = false; }, 1000);
-                    console.log('[empezar-alt] handler alternativo disparado');
+                    debug('[empezar-alt] handler alternativo disparado');
                     empezarHandler({ preventDefault: () => {}, target: startBtn });
                 }
             };
@@ -1952,7 +1958,7 @@ function lanzarConfetti(opciones = {}) {
                 if (note && note.innerText.includes('Ya jugaste')) {
                     note.innerHTML = 'Inicia sesión con Google para guardar tu puntaje y aparecer en el ranking. <a href="#" id="loginFromStart" class="game__note-link">Entrar</a>';
                 }
-                console.log('[app] Admin detectado al cargar — botones liberados sin límite.');
+                debug('[app] Admin detectado al cargar — botones liberados sin límite.');
             } else {
                 const localCount = getLocalPartidasHoy();
                 if (localCount >= 2) {
@@ -2005,13 +2011,13 @@ function lanzarConfetti(opciones = {}) {
 
     // Reaccionar a cambios de sesión (guardar puntaje al loguearse después de jugar)
     document.addEventListener('auth-change', (e) => {
-        console.log('[app] auth-change:', e.detail ? e.detail.displayName : 'logged out');
+        debug('[app] auth-change:', e.detail ? e.detail.displayName : 'logged out');
         // Cachear el último UID del evento para que isCurrentUserAdmin() funcione
         // incluso antes de que Firebase termine de inicializar (race condition fix).
         window._lastAuthEventUid = e.detail && e.detail.uid ? e.detail.uid : null;
         // Si el usuario acaba de iniciar sesión y tiene un puntaje pendiente, guardarlo
         if (e.detail && estado.puntaje > 0) {
-            console.log('[app] Puntaje pendiente:', estado.puntaje, '— listo para guardar al iniciar sesión.');
+            debug('[app] Puntaje pendiente:', estado.puntaje, '— listo para guardar al iniciar sesión.');
         }
         // Recargar ranking cuando cambia sesión
         // (la posición del usuario cambia entre logueado/deslogueado)
@@ -2044,14 +2050,14 @@ function lanzarConfetti(opciones = {}) {
             if (note && note.innerText.includes('Ya jugaste')) {
                 note.innerHTML = 'Inicia sesión con Google para guardar tu puntaje y aparecer en el ranking. <a href="#" id="loginFromStart" class="game__note-link">Entrar</a>';
             }
-            console.log('[app] Admin bypass activo — botón Empezar habilitado sin límite.');
+            debug('[app] Admin bypass activo — botón Empezar habilitado sin límite.');
         }
     });
 
     // Recargar ranking después de guardar puntaje (el puntaje cambió)
     // Se detecta con un CustomEvent disparado desde mostrarResultado
     document.addEventListener('ranking-invalidate', () => {
-        console.log('[app] ranking-invalidate — recargando…');
+        debug('[app] ranking-invalidate — recargando…');
         invalidarRankingCache();
         cargarYRenderRanking();
     });
@@ -2063,7 +2069,7 @@ function lanzarConfetti(opciones = {}) {
         start();
     }
 
-    console.log('📖 Lectura Viva cargada. 30 preguntas listas para jugar.');
+    debug('📖 Lectura Viva cargada. 30 preguntas listas para jugar.');
     // Exponer funciones clave al window GLOBAL para que empezarJuegoDirect (definido
     // más abajo, fuera del IIFE) pueda llamarlas sin problemas de scope.
     window.iniciarJuego = iniciarJuego;
@@ -2081,10 +2087,10 @@ function lanzarConfetti(opciones = {}) {
 // Las funciones internas (iniciarJuego, getLocalPartidasHoy, etc) ya están en
 // scope global gracias al script clásico.
 window.empezarJuegoDirect = async function(btn) {
-    console.log('[empezar-inline] onclick handler disparado');
+    debug('[empezar-inline] onclick handler disparado');
     // ADMIN BYPASS directo
     if (typeof isCurrentUserAdmin === 'function' && isCurrentUserAdmin()) {
-        console.log('[empezar-inline] admin bypass');
+        debug('[empezar-inline] admin bypass');
         mostrarSpinnerGenerando(true);
         if (typeof iniciarJuego === 'function') iniciarJuego();
         return;
