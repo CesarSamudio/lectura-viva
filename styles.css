@@ -1724,7 +1724,7 @@ a:focus-visible {
     line-height: 1.6;
 }
 
-/* ---------- FEEDBACK DEL FORM (Día 5) ---------- */
+/* ---------- FEEDBACK DEL FORM ---------- */
 .comments__feedback {
     margin-top: 12px;
     padding: 10px 14px;
@@ -1907,7 +1907,7 @@ a:focus-visible {
     color: var(--mute);
 }
 
-/* ---------- MODAL (Día 6: Editar nickname) ---------- */
+/* ---------- MODAL (Editar nickname) ---------- */
 .modal {
     position: fixed;
     inset: 0;
@@ -2145,7 +2145,7 @@ a:focus-visible {
 }
 
 /* =====================================================
-   Día 3 — Save note (mensaje al final del quiz)
+   SAVE NOTE (mensaje al final del quiz)
    ===================================================== */
 .game__save-note {
     margin-top: 24px;

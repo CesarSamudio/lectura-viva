@@ -6,7 +6,6 @@
    no por secreto. El cliente SIEMPRE las ve.
 
    Proyecto: lectura-viva-web-2aa7b
-   Creado: Día 2 (30-Jun-2026)
    ===================================================== */
 
 const firebaseConfig = {

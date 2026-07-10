@@ -69,7 +69,9 @@
             box-shadow: 0 14px 28px -10px rgba(120, 90, 40, 0.18);
         }
 
-        /* Avatar generado: monograma en círculo con colores terrosos rotando */
+        /* Avatar generado: monograma en círculo con colores terrosos rotando.
+           Se muestra como fallback mientras carga la <img class="creator-card__photo">
+           o si la imagen falla (estado de error manejado en JS). */
         .creator-card__avatar {
             width: 96px;
             height: 96px;
@@ -83,6 +85,42 @@
             font-weight: 600;
             color: #fff;
             box-shadow: inset 0 -6px 12px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(120, 90, 40, 0.25);
+        }
+
+        /* Foto real del creador — superpuesta al avatar.
+           Por defecto el avatar (monograma) queda debajo. Cuando la <img>
+           carga exitosamente, se posiciona encima con object-fit cover.
+           Si la imagen falla, se le agrega .creator-card__photo--error en JS. */
+        .creator-card__photo {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 20%;
+            position: absolute;
+            top: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 4px 12px rgba(120, 90, 40, 0.25);
+            border: 2px solid #fdfaf3;
+            background: #fdfaf3;
+        }
+
+        /* Si la imagen falla, se oculta y queda solo el monograma */
+        .creator-card__photo--error {
+            display: none;
+        }
+
+        /* Card sola centrada (cuando hay un único creador) */
+        .creator-card--solo {
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .creator-card--solo {
+            position: relative;
+            padding-top: 32px;
         }
 
         .creator-card__avatar--1 { background: linear-gradient(135deg, #b8543c 0%, #8a3a25 100%); }
@@ -294,45 +332,28 @@
 
         <div class="container creators__inner">
             <p class="hero__eyebrow reveal" style="text-align:center; margin-bottom: 12px;">
-                LOS QUE ESTÁN DETRÁS DE ESTO
+                EL QUE ESTÁ DETRÁS DE ESTO
             </p>
             <h1 class="section-title reveal" style="text-align:center; margin-bottom: 16px;">
-                Nuestros creadores
+                Su creador
             </h1>
             <p class="section-lede reveal" style="text-align:center; max-width: 580px; margin: 0 auto;">
-                Cuatro estudiantes de 11°G que unieron talentos para construir
-                una herramienta de lectura comprensiva.
+                Estudiante de 11°G que diseñó y programó esta herramienta
+                para fomentar la lectura comprensiva.
             </p>
 
             <div class="creators__grid">
-                <article class="creator-card reveal">
+                <article class="creator-card creator-card--solo reveal">
                     <div class="creator-card__avatar creator-card__avatar--1" aria-hidden="true">CS</div>
+                    <img class="creator-card__photo" src="./assets/cesar.jpg" alt="Foto de Cesar Samudio" loading="lazy">
                     <h3 class="creator-card__name">Cesar Samudio</h3>
                     <p class="creator-card__role">Desarrollo &amp; diseño</p>
-                </article>
-
-                <article class="creator-card reveal">
-                    <div class="creator-card__avatar creator-card__avatar--2" aria-hidden="true">GO</div>
-                    <h3 class="creator-card__name">Geilys Ortega</h3>
-                    <p class="creator-card__role">Contenido &amp; pedagogía</p>
-                </article>
-
-                <article class="creator-card reveal">
-                    <div class="creator-card__avatar creator-card__avatar--3" aria-hidden="true">AS</div>
-                    <h3 class="creator-card__name">Alexis Sánchez</h3>
-                    <p class="creator-card__role">Contenido &amp; pedagogía</p>
-                </article>
-
-                <article class="creator-card reveal">
-                    <div class="creator-card__avatar creator-card__avatar--4" aria-hidden="true">CD</div>
-                    <h3 class="creator-card__name">Caleb Duarte</h3>
-                    <p class="creator-card__role">Contenido &amp; pedagogía</p>
                 </article>
             </div>
 
             <div class="creators__note reveal">
-                <p>Creamos esta página con cariño para los estudiantes, para que leer no sea solo descifrar letras sino pensar el mundo.</p>
-                <p class="creators__signature">— Equipo Lectura Viva, 2026</p>
+                <p>Construí esta página con cariño para los estudiantes, para que leer no sea solo descifrar letras sino pensar el mundo.</p>
+                <p class="creators__signature">— Cesar Samudio, 2026</p>
             </div>
         </div>
     </section>
@@ -408,6 +429,19 @@
 </footer>
 
 <!-- ============== SCRIPTS ============== -->
+<script>
+    // Fallback: si la foto del creador falla al cargar, ocultar la <img>
+    // y dejar visible el monograma "CS" del .creator-card__avatar
+    document.addEventListener('DOMContentLoaded', () => {
+        const photo = document.querySelector('.creator-card__photo');
+        if (photo) {
+            photo.addEventListener('error', () => {
+                photo.classList.add('creator-card__photo--error');
+            });
+        }
+    });
+</script>
+
 <script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore-compat.js"></script>

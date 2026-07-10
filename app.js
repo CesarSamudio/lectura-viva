@@ -247,7 +247,7 @@ function shuffle(arr) {
 function $(sel) { return document.querySelector(sel); }
 function $$(sel) { return document.querySelectorAll(sel); }
 
-// ---------- RANKING (Día 4) ----------
+// ---------- RANKING ----------
 // Cache de 60s para no quemar reads de Firestore
 let _rankingCache = { ts: 0, uid: null, data: null };
 const RANKING_CACHE_MS = 60 * 1000;
@@ -984,7 +984,7 @@ async function mostrarResultado() {
                 } else {
                     noteEl.innerHTML = `💾 Puntaje guardado. Tu mejor: <strong>${result.mejorPuntaje} pts</strong> (partida #${result.partidas})`;
                 }
-                // Día 4: invalidar cache y recargar ranking (puntaje cambió)
+                // Invalidar cache y recargar ranking (puntaje cambió)
                 document.dispatchEvent(new CustomEvent('ranking-invalidate'));
             } else {
                 // Mensaje limpio según el código de error
@@ -1081,7 +1081,7 @@ function setupCommentCounter() {
     }
 }
 
-// ---------- COMENTARIOS (Día 5) ----------
+// ---------- COMENTARIOS ----------
 // Cache de 60s para destacados (no quemamos reads de Firestore)
 let _comentariosCache = { ts: 0, data: null };
 const COMENTARIOS_CACHE_MS = 60 * 1000;
@@ -1436,7 +1436,7 @@ function invalidarComentariosCache() {
     _comentariosCache = { ts: 0, data: null };
 }
 
-// ---------- EDITAR NICKNAME (Día 6) ----------
+// ---------- EDITAR NICKNAME ----------
 let _customNickname = null; // Cache en memoria del nickname custom
 let _canChangeNickname = true; // Si false, está bloqueado por cooldown
 let _nicknameCooldownInfo = null; // { daysSinceLastChange, canChangeIn }
@@ -1979,12 +1979,12 @@ function lanzarConfetti(opciones = {}) {
     // Menú hamburguesa móvil
     setupMobileMenu();
 
-    // Form de comentarios (Día 5)
+    // Form de comentarios
     setupCommentForm();
     syncCommentFormAuth();
     cargarYRenderComentarios();
 
-    // Edit nickname modal (Día 6)
+    // Edit nickname modal
     setupEditNickname();
     // Cargar nickname custom si hay sesión activa
     if (window.Auth && window.Auth.getCurrentUser()) {
@@ -2000,10 +2000,10 @@ function lanzarConfetti(opciones = {}) {
     // Confetti canvas
     setupConfettiCanvas();
 
-    // Ranking (Día 4)
+    // Ranking
     cargarYRenderRanking();
 
-    // Reaccionar a cambios de sesión (Día 3: guardar puntaje al loguearse después de jugar)
+    // Reaccionar a cambios de sesión (guardar puntaje al loguearse después de jugar)
     document.addEventListener('auth-change', (e) => {
         console.log('[app] auth-change:', e.detail ? e.detail.displayName : 'logged out');
         // Cachear el último UID del evento para que isCurrentUserAdmin() funcione
@@ -2011,16 +2011,16 @@ function lanzarConfetti(opciones = {}) {
         window._lastAuthEventUid = e.detail && e.detail.uid ? e.detail.uid : null;
         // Si el usuario acaba de iniciar sesión y tiene un puntaje pendiente, guardarlo
         if (e.detail && estado.puntaje > 0) {
-            console.log('[app] Puntaje pendiente:', estado.puntaje, '— listo para Día 3.');
+            console.log('[app] Puntaje pendiente:', estado.puntaje, '— listo para guardar al iniciar sesión.');
         }
-        // Día 4: recargar ranking cuando cambia sesión
+        // Recargar ranking cuando cambia sesión
         // (la posición del usuario cambia entre logueado/deslogueado)
         invalidarRankingCache();
         cargarYRenderRanking();
-        // Día 5: sincronizar form de comentarios según sesión
+        // Sincronizar form de comentarios según sesión
         syncCommentFormAuth();
 
-        // Día 6: cargar nickname custom al loguearse
+        // Cargar nickname custom al loguearse
         if (e.detail) {
             _customNickname = null; // reset al cambiar sesión
             loadAndApplyCustomNickname();
@@ -2048,7 +2048,7 @@ function lanzarConfetti(opciones = {}) {
         }
     });
 
-    // Día 4: recargar ranking después de guardar puntaje (el puntaje cambió)
+    // Recargar ranking después de guardar puntaje (el puntaje cambió)
     // Se detecta con un CustomEvent disparado desde mostrarResultado
     document.addEventListener('ranking-invalidate', () => {
         console.log('[app] ranking-invalidate — recargando…');

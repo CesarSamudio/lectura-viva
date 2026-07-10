@@ -7,23 +7,11 @@ Landing page interactiva sobre **lectura comprensiva** para estudiantes de 10°,
 - 🎨 Diseño "papel cuaderno moderno" (mezcla Say Briefly + Linearity)
 - 🧠 Quiz con **3 niveles**: literal (10 pts), inferencial (15 pts), crítico (20 pts)
 - 📝 30 preguntas totales, 10 aleatorias por partida
-- 💬 Sistema de comentarios (próximamente con Firebase)
-- 🏆 Ranking persistente (próximamente con Firebase)
+- 💬 Sistema de comentarios (moderado, con cuenta de Google)
+- 🏆 Ranking persistente desde Firestore
 - 💚 Botón directo a grupo de WhatsApp
 - 📱 100% responsive (móvil, tablet, desktop)
 - ♿ Accesible (semántico, focus visible, reduced-motion respetado)
-
-## Estado del proyecto
-
-| Día | Tarea | Estado |
-|---|---|---|
-| 1 | HTML + CSS + JS base + 30 preguntas | ✅ Listo |
-| 2 | Firebase Auth + reglas de seguridad | ⏳ Pendiente |
-| 3 | Minijuego con auth, save de puntaje | ⏳ Pendiente |
-| 4 | Ranking persistente | ⏳ Pendiente |
-| 5 | Comentarios moderados | ⏳ Pendiente |
-| 6 | WhatsApp + pulido | ⏳ Pendiente |
-| 7 | Deploy GitHub Pages | ⏳ Pendiente |
 
 ## Cómo verlo localmente
 
@@ -50,11 +38,18 @@ Luego abre http://localhost:8000 en tu navegador.
 
 ```
 lectura-viva/
-├── index.html        # Estructura de la página (9 secciones)
+├── index.html        # Estructura de la página principal
+├── jugar.html        # Quiz completo (con auth + guardado de puntaje)
+├── ranking.html      # Top 10 desde Firestore
+├── comunidad.html    # Comentarios moderados
+├── creadores.html    # Equipo del proyecto
+├── admin.html        # Panel de moderación (solo admin)
 ├── styles.css        # Design system + estilos + animaciones
 ├── app.js            # Lógica del quiz + reveal + contador
-├── README.md         # Este archivo
-└── assets/           # (próximamente) favicon, og-image
+├── auth.js           # Login con Google + sesión
+├── firestore.js      # Lectura/escritura en Firestore
+├── firebase-config.js
+└── assets/           # favicon, imágenes
 ```
 
 ## Design system
@@ -72,19 +67,6 @@ lectura-viva/
 --font-body: 'Inter', sans-serif;
 --font-mono: 'Roboto Mono', monospace;
 ```
-
-## Pendiente (días siguientes)
-
-- [ ] Crear proyecto Firebase + habilitar Authentication con Google
-- [ ] Configurar Firestore con 3 colecciones: `usuarios`, `ranking`, `comentarios_*`
-- [ ] Integrar SDK de Firebase en `app.js`
-- [ ] Login con Google en header
-- [ ] Guardar puntaje por usuario (transacción atómica)
-- [ ] Cargar top 10 del ranking
-- [ ] Form de comentarios que escribe a `comentarios_pendientes`
-- [ ] Cargar `comentarios_destacados` aprobados
-- [ ] Conectar link real de WhatsApp
-- [ ] Deploy a GitHub Pages
 
 ## Licencia
 

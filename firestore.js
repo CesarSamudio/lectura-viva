@@ -19,7 +19,7 @@
 let firestoreDb = null;
 let firebaseApp = null;
 
-// ---------- LÍMITES TEMPORALES (Día 6) ----------
+// ---------- LÍMITES TEMPORALES ----------
 // 1 cambio de nickname por mes (30 días)
 // 1 comentario por semana (7 días)
 // Los límites se aplican tanto en cliente (UX) como en reglas Firestore (defensa servidor)
@@ -151,7 +151,7 @@ async function initFirestore() {
                 return { bloqueado: false, razon: 'error', error: err.code };
             }
         },
-        // Día 3: guardar puntaje con transacción atómica + anti-spam (2 por día)
+        // Guardar puntaje con transacción atómica + anti-spam (2 por día)
         guardarPuntaje: async (uid, score, nickname) => {
             if (!firestoreDb) {
                 return { ok: false, error: 'Firestore no inicializado' };
@@ -240,7 +240,7 @@ async function initFirestore() {
                 return { ok: false, error: 'No pudimos guardar tu puntaje.', code: err.code };
             }
         },
-        // Día 4: cargar ranking top N (ordenado por mejorPuntaje desc)
+        // Cargar ranking top N (ordenado por mejorPuntaje desc)
         // Devuelve { ok, items, yo, miPosicion }
         // - items: array top N con { uid, nickname, mejorPuntaje, partidas, photoURL }
         // - yo: doc del usuario actual si existe (objeto) o null si no está logueado / no tiene doc
@@ -283,7 +283,7 @@ async function initFirestore() {
                 return { ok: false, error: err.message, code: err.code, items: [] };
             }
         },
-        // Día 6: actualizar nickname del usuario
+        // Actualizar nickname del usuario
         // - Escribe en `usuarios/{uid}` con { nickname, updatedAt, lastNickChangeAt }
         // - Si existe doc en `ranking/{uid}`, también actualiza `nickname` ahí
         // - Transacción atómica para que ambos queden sincronizados
@@ -387,7 +387,7 @@ async function initFirestore() {
                 };
             }
         },
-        // Día 6: leer nickname custom del usuario + info de cooldown
+        // Leer nickname custom del usuario + info de cooldown
         // Devuelve { ok, nickname, daysSinceLastChange, canChangeIn }
         getNickname: async (uid) => {
             if (!firestoreDb || !uid) return { ok: false, nickname: null };
@@ -417,7 +417,7 @@ async function initFirestore() {
                 return { ok: false, nickname: null, error: err.code };
             }
         },
-        // Día 6: ver cuánto falta para poder comentar de nuevo
+        // Ver cuánto falta para poder comentar de nuevo
         // Devuelve { canComment, msRemaining, remainingText, lastCommentAt }
         getCommentCooldown: async (uid) => {
             if (!firestoreDb || !uid) return { canComment: true };
@@ -453,7 +453,7 @@ async function initFirestore() {
         // Limites expuestos para el cliente
         LIMITS,
 
-        // Día 5/6: enviar comentario a la cola de moderación
+        // Enviar comentario a la cola de moderación
         // - Solo usuarios logueados
         // - Escribe en `comentarios_pendientes` con aprobado: false
         // - Límite: 1 comentario cada 7 días (cooldown)
@@ -541,7 +541,7 @@ async function initFirestore() {
                 };
             }
         },
-        // Día 5: cargar comentarios destacados (aprobados)
+        // Cargar comentarios destacados (aprobados)
         // Devuelve array ordenado por createdAt desc, limitado por `limite`
         cargarDestacados: async (limite = 5) => {
             if (!firestoreDb) return { ok: false, error: 'Firestore no inicializado', items: [] };
