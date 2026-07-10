@@ -2,7 +2,8 @@
    LECTURA VIVA — Firestore
    =====================================================
    Capa de inicialización + helpers estructurales.
-   Funciones: guardar puntaje, ranking, comentarios, nicknames.
+   Las funciones de guardar puntaje, ranking y comentarios
+   se agregan en los Días 3/4/5.
 
    Estructura:
      usuarios/{uid}                  → perfil (nickname, foto)
@@ -26,11 +27,6 @@ const LIMITS = {
     nicknameCooldownDays: 30,
     commentCooldownDays: 7,
 };
-
-// Flag de debug: console.log de info solo aparecen si está activo.
-// console.error y console.warn SIEMPRE se muestran (señal de problemas).
-window.__LECTURA_VIVA_DEBUG__ = window.__LECTURA_VIVA_DEBUG__ || false;
-const debug = (...args) => { if (window.__LECTURA_VIVA_DEBUG__) console.log(...args); };
 
 // Helper: milisegundos en N días
 function daysInMs(days) {
@@ -87,7 +83,7 @@ async function initFirestore() {
         });
     }
 
-    debug('[firestore] initFirestore() corriendo. readyState:', document.readyState);
+    console.log('[firestore] initFirestore() corriendo. readyState:', document.readyState);
 
     // Verificar SDK
     if (typeof firebase === 'undefined') {
@@ -237,7 +233,7 @@ async function initFirestore() {
                     };
                 }
 
-                debug('[firestore] guardarPuntaje OK:', result);
+                console.log('[firestore] guardarPuntaje OK:', result);
                 return { ok: true, ...result };
             } catch (err) {
                 console.error('[firestore] guardarPuntaje error:', err.code, err.message);
@@ -323,10 +319,8 @@ async function initFirestore() {
 
                 await firestoreDb.runTransaction(async (tx) => {
                     // ======================================================
-                                        // FASE 1: lecturas primero
-                                        // (regla de Firestore: todas las reads antes de cualquier write
-                                        //  dentro de runTransaction, si no la transacción falla)
-                                        // ======================================================
+                    // FASE 1: TODOS LOS READS PRIMERO
+                    // ======================================================
                     const userSnap = await tx.get(userDocRef);
                     const rankingSnap = await tx.get(rankingDocRef);
 
@@ -354,8 +348,8 @@ async function initFirestore() {
                     };
 
                     // ======================================================
-                                        // FASE 2: escrituras después
-                                        // ======================================================
+                    // FASE 2: TODOS LOS WRITES DESPUÉS
+                    // ======================================================
                     if (userSnap.exists) {
                         tx.update(userDocRef, updateData);
                     } else {
@@ -371,7 +365,7 @@ async function initFirestore() {
                 });
 
                 // Invalidar cache para que el header se actualice
-                debug('[firestore] actualizarNickname OK:', safeNick);
+                console.log('[firestore] actualizarNickname OK:', safeNick);
                 return { ok: true, nickname: safeNick };
             } catch (err) {
                 if (err.message === 'COOLDOWN_ACTIVE') {
@@ -528,7 +522,7 @@ async function initFirestore() {
                     aprobado: false,
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                 });
-                debug('[firestore] enviarComentario OK:', docRef.id);
+                console.log('[firestore] enviarComentario OK:', docRef.id);
                 return { ok: true, docId: docRef.id };
             } catch (err) {
                 console.error('[firestore] enviarComentario error:', err.code, err.message);
@@ -567,7 +561,7 @@ async function initFirestore() {
         },
     };
 
-    debug('[firestore] Firestore inicializado correctamente');
+    console.log('[firestore] Firestore inicializado correctamente');
 }
 
 // Arranque

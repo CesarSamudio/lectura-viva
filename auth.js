@@ -11,11 +11,6 @@
    y un CustomEvent 'auth-change' para que app.js reaccione.
    ===================================================== */
 
-// Flag de debug: console.log de info solo aparecen si está activo.
-// console.error y console.warn SIEMPRE se muestran (señal de problemas).
-window.__LECTURA_VIVA_DEBUG__ = window.__LECTURA_VIVA_DEBUG__ || false;
-const debug = (...args) => { if (window.__LECTURA_VIVA_DEBUG__) console.log(...args); };
-
 // ---------- Referencias al DOM (cacheadas después de DOMContentLoaded) ----------
 let loginBtn, userChip, userAvatar, userName, userMenu, userDropdown;
 
@@ -32,7 +27,7 @@ async function initAuth() {
         });
     }
 
-    debug('[auth] initAuth() corriendo. readyState:', document.readyState);
+    console.log('[auth] initAuth() corriendo. readyState:', document.readyState);
 
     // Cachear referencias DOM
     loginBtn     = document.querySelector('#loginBtn');
@@ -111,7 +106,7 @@ async function signInWithGoogle() {
     // Guard: si ya hay sesión, no hacer nada
     const existingUser = firebaseAuth.currentUser;
     if (existingUser) {
-        debug('[auth] Ya hay sesión activa:', existingUser.email);
+        console.log('[auth] Ya hay sesión activa:', existingUser.email);
         return;
     }
     if (loginBtn) {
@@ -152,7 +147,7 @@ async function signOut() {
 
 // ---------- RENDER SEGÚN ESTADO ----------
 function renderLoggedIn(user) {
-    debug('[auth] renderLoggedIn:', user);
+    console.log('[auth] renderLoggedIn:', user);
 
     // Re-consultar el DOM cada vez (por si las refs cacheadas están null)
     const loginBtn   = document.querySelector('#loginBtn');
@@ -162,13 +157,13 @@ function renderLoggedIn(user) {
 
     if (loginBtn) {
         loginBtn.hidden = true;
-        debug('[auth] loginBtn hidden = true');
+        console.log('[auth] loginBtn hidden = true');
     } else {
         console.warn('[auth] #loginBtn no encontrado en DOM');
     }
     if (userChip) {
         userChip.hidden = false;
-        debug('[auth] userChip hidden = false');
+        console.log('[auth] userChip hidden = false');
     } else {
         console.warn('[auth] #userChip no encontrado en DOM');
     }
@@ -185,13 +180,13 @@ function renderLoggedIn(user) {
             userAvatar.onerror = null; // evitar loop infinito
             userAvatar.src = makeAvatarDataUri(user.displayName || user.email || '?');
         };
-        debug('[auth] userAvatar.src:', userAvatar.src.slice(0, 60), '...');
+        console.log('[auth] userAvatar.src:', userAvatar.src.slice(0, 60), '...');
     } else {
         console.warn('[auth] #userAvatar no encontrado en DOM');
     }
     if (userName) {
         userName.textContent = user.displayName || user.email;
-        debug('[auth] userName.textContent:', userName.textContent);
+        console.log('[auth] userName.textContent:', userName.textContent);
     } else {
         console.warn('[auth] #userName no encontrado en DOM');
     }
@@ -213,7 +208,7 @@ function makeAvatarDataUri(name) {
 }
 
 function renderLoggedOut() {
-    debug('[auth] renderLoggedOut');
+    console.log('[auth] renderLoggedOut');
     const loginBtn = document.querySelector('#loginBtn');
     const userChip = document.querySelector('#userChip');
     if (loginBtn) loginBtn.hidden = false;
